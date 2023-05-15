@@ -56,19 +56,19 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
   return (
     <>
       <Box fontWeight={'bold'} fontSize={'2xl'} textAlign={'center'}>
-        登录 FastGPT
+        登录 AI客服
       </Box>
       <form onSubmit={handleSubmit(onclickLogin)}>
         <FormControl mt={8} isInvalid={!!errors.username}>
           <Input
-            placeholder="邮箱/手机号"
+            placeholder="邮箱"
             size={mediaLgMd}
             {...register('username', {
-              required: '邮箱/手机号不能为空',
+              required: '邮箱/不能为空',
               pattern: {
                 value:
                   /(^1[3456789]\d{9}$)|(^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$)/,
-                message: '邮箱/手机号格式错误'
+                message: '邮箱/格式错误'
               }
             })}
           ></Input>
@@ -99,6 +99,7 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
         </FormControl>
         <Flex align={'center'} justifyContent={'space-between'} mt={6} color={'myBlue.600'}>
           <Box
+            display={'none'}
             cursor={'pointer'}
             _hover={{ textDecoration: 'underline' }}
             onClick={() => setPageType('forgetPassword')}
@@ -107,6 +108,7 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
             忘记密码?
           </Box>
           <Box
+            display={'none'}
             cursor={'pointer'}
             _hover={{ textDecoration: 'underline' }}
             onClick={() => setPageType('register')}

@@ -75,7 +75,7 @@ const ModelEditForm = ({
 
   return (
     <>
-      <Card p={4}>
+      <Card p={4} display={'none'}>
         <Box fontWeight={'bold'}>基本信息</Box>
         <Flex alignItems={'center'} mt={4}>
           <Box flex={'0 0 80px'} w={0}>
@@ -160,7 +160,7 @@ const ModelEditForm = ({
           </Flex>
         )}
       </Card>
-      <Card p={4}>
+      <Card p={4} display={'none'}>
         <Box fontWeight={'bold'}>模型效果</Box>
         <FormControl mt={4}>
           <Flex alignItems={'center'}>
@@ -246,7 +246,7 @@ const ModelEditForm = ({
         </Box>
       </Card>
       {isOwner && (
-        <Card p={4} gridColumnStart={[1, 1]} gridColumnEnd={[2, 3]}>
+        <Card p={4} gridColumnStart={[1, 1]} gridColumnEnd={[2, 3]} display={'none'}>
           <Box fontWeight={'bold'}>分享设置</Box>
 
           <Grid gridTemplateColumns={['1fr', '1fr 410px']} gridGap={5}>

@@ -24,35 +24,35 @@ const Navbar = () => {
       },
 
       {
-        label: 'AI助手',
+        label: 'AI客服',
         icon: 'model',
         link: `/model?modelId=${lastModelId}`,
         activeLink: ['/model']
-      },
-      {
-        label: '共享',
-        icon: 'shareMarket',
-        link: '/model/share',
-        activeLink: ['/model/share']
-      },
-      {
-        label: '邀请',
-        icon: 'promotion',
-        link: '/promotion',
-        activeLink: ['/promotion']
-      },
-      {
-        label: '开发',
-        icon: 'develop',
-        link: '/openapi',
-        activeLink: ['/openapi']
-      },
-      {
-        label: '账号',
-        icon: 'user',
-        link: '/number',
-        activeLink: ['/number']
       }
+      // {
+      //   label: '共享',
+      //   icon: 'shareMarket',
+      //   link: '/model/share',
+      //   activeLink: ['/model/share']
+      // },
+      // {
+      //   label: '邀请',
+      //   icon: 'promotion',
+      //   link: '/promotion',
+      //   activeLink: ['/promotion']
+      // },
+      // {
+      //   label: '开发',
+      //   icon: 'develop',
+      //   link: '/openapi',
+      //   activeLink: ['/openapi']
+      // },
+      // {
+      //   label: '账号',
+      //   icon: 'user',
+      //   link: '/number',
+      //   activeLink: ['/number']
+      // }
     ],
     [lastChatId, lastChatModelId, lastModelId]
   );
@@ -71,11 +71,11 @@ const Navbar = () => {
       {/* logo */}
       <Box
         mb={5}
-        border={'2px solid #fff'}
+        border={'1px solid #fff'}
         borderRadius={'36px'}
         overflow={'hidden'}
         cursor={'pointer'}
-        onClick={() => router.push('/number')}
+        // onClick={() => router.push('/number')}
       >
         <Image
           src={userInfo?.avatar || '/icon/human.png'}

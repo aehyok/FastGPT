@@ -159,13 +159,11 @@ const Home = () => {
           letterSpacing={'5px'}
           color={'myBlue.600'}
         >
-          FastGpt
+          跨境电商
         </Box>
+        <Box color={'myBlue.600'} fontSize={['30px', '50px']}></Box>
         <Box color={'myBlue.600'} fontSize={['30px', '50px']}>
-          三分钟
-        </Box>
-        <Box color={'myBlue.600'} fontSize={['30px', '50px']}>
-          搭建 AI 知识库
+          AI智能客服
         </Box>
 
         <Button
