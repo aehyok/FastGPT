@@ -18,7 +18,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          sudo apt update && sudo  apt install  -y nodejs npm
+          sudo apt-get update && sudo  apt-get install  -y nodejs npm
       - # Add support for more platforms with QEMU (optional)
         # https://github.com/docker/setup-qemu-action
         name: Set up QEMU
