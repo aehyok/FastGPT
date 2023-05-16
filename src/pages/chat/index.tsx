@@ -710,7 +710,7 @@ const Chat = ({
             borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
             color={useColorModeValue('myGray.900', 'white')}
           >
-            {!isPc && (
+            {/* {!isPc && (
               <MyIcon
                 name={'tabbarMore'}
                 w={'14px'}
@@ -765,7 +765,7 @@ const Chat = ({
               </Menu>
             ) : (
               <Box w={'16px'} h={'16px'} />
-            )}
+            )} */}
           </Flex>
           {/* chat content box */}
           <Box ref={ChatBox} pb={[4, 0]} flex={'1 0 0'} h={0} w={'100%'} overflow={'overlay'}>
