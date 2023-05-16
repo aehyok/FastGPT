@@ -23,7 +23,7 @@ const ModelList = ({ modelId }: { modelId: string }) => {
   const onclickCreateModel = useCallback(async () => {
     setIsLoading(true);
     try {
-      const id = await postCreateModel({ name: `AI助手${myModels.length + 1}` });
+      const id = await postCreateModel({ name: `Iphone14 pro ${myModels.length + 1}` });
       toast({
         title: '创建成功',
         status: 'success'
@@ -94,7 +94,7 @@ const ModelList = ({ modelId }: { modelId: string }) => {
             />
           )}
         </Flex>
-        <Tooltip label={'新建一个AI助手'}>
+        <Tooltip label={'新建电商资料库'}>
           <IconButton
             h={'32px'}
             icon={<AddIcon />}

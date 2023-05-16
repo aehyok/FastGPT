@@ -141,7 +141,7 @@ const ModelDataCard = ({ modelId, isOwner }: { modelId: string; isOwner: boolean
     <Box position={'relative'}>
       <Flex>
         <Box fontWeight={'bold'} fontSize={'lg'} flex={1} mr={2}>
-          知识库数据: {total}组
+          资料库数据: {total}组
         </Box>
         {isOwner && (
           <>
@@ -151,9 +151,11 @@ const ModelDataCard = ({ modelId, isOwner }: { modelId: string; isOwner: boolean
               variant={'outline'}
               mr={4}
               size={'sm'}
+              display={'none'}
               onClick={() => refetchData(pageNum)}
             />
             <Button
+              display={'none'}
               variant={'outline'}
               mr={2}
               size={'sm'}
@@ -223,9 +225,9 @@ const ModelDataCard = ({ modelId, isOwner }: { modelId: string; isOwner: boolean
                 <Th>
                   匹配的知识点
                   <Tooltip
-                    label={
-                      '对话时，会将用户的问题和知识库的 "匹配知识点" 进行比较，找到最相似的前 n 条记录，将这些记录的 "匹配知识点"+"补充知识点" 作为 chatgpt 的系统提示词。'
-                    }
+                  // label={
+                  //   '对话时，会将用户的问题和知识库的 "匹配知识点" 进行比较，找到最相似的前 n 条记录，将这些记录的 "匹配知识点"+"补充知识点" 作为 chatgpt 的系统提示词。'
+                  // }
                   >
                     <QuestionOutlineIcon ml={1} />
                   </Tooltip>

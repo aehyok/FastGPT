@@ -175,7 +175,14 @@ const SelectFileModal = ({
           justifyContent={'center'}
           fontSize={'sm'}
         >
-          <Box mt={2} px={5} maxW={['100%', '70%']} textAlign={'justify'} color={'blackAlpha.600'}>
+          <Box
+            display={'none'}
+            mt={2}
+            px={5}
+            maxW={['100%', '70%']}
+            textAlign={'justify'}
+            color={'blackAlpha.600'}
+          >
             支持 {fileExtension} 文件。Gpt会自动对文本进行 QA 拆分，需要较长训练时间，拆分需要消耗
             tokens，账号余额不足时，未拆分的数据会被删除。一个{fileTextArr.length}个文本。
           </Box>
