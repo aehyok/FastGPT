@@ -170,7 +170,7 @@ const ModelDataCard = ({ modelId, isOwner }: { modelId: string; isOwner: boolean
                 导入
               </MenuButton>
               <MenuList>
-                <MenuItem
+                {/* <MenuItem
                   onClick={() =>
                     setEditInputData({
                       a: '',
@@ -180,7 +180,7 @@ const ModelDataCard = ({ modelId, isOwner }: { modelId: string; isOwner: boolean
                 >
                   手动输入
                 </MenuItem>
-                <MenuItem onClick={onOpenSelectFileModal}>文本/文件拆分</MenuItem>
+                <MenuItem onClick={onOpenSelectFileModal}>文本/文件拆分</MenuItem> */}
                 <MenuItem onClick={onOpenSelectCsvModal}>csv 问答对导入</MenuItem>
               </MenuList>
             </Menu>

@@ -17,14 +17,14 @@ const Navbar = () => {
   const navbarList = useMemo(
     () => [
       {
-        label: '聊天',
+        label: '邮件列表',
         icon: 'chat',
         link: `/chat?modelId=${lastChatModelId}&chatId=${lastChatId}`,
         activeLink: ['/chat']
       },
 
       {
-        label: 'AI客服',
+        label: '客服知识库',
         icon: 'model',
         link: `/model?modelId=${lastModelId}`,
         activeLink: ['/model']

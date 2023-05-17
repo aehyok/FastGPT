@@ -824,6 +824,7 @@ const Chat = ({
                           />
                           {item.systemPrompt && (
                             <Button
+                              display={'none'}
                               size={'xs'}
                               mt={2}
                               fontWeight={'normal'}

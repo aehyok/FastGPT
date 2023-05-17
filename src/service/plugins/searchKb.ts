@@ -89,7 +89,7 @@ export const searchKb = async ({
     2: [0.7, 0.3]
   };
   const filterRate = filterRateMap[systemPrompts.length] || filterRateMap[0];
-
+  console.log(filterRate, 'filterrate');
   // 计算固定提示词的 token 数量
   const fixedPrompts = [
     ...(model.chat.systemPrompt

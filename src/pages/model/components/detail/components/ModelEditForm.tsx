@@ -75,7 +75,7 @@ const ModelEditForm = ({
 
   return (
     <>
-      <Card p={4} display={'none'}>
+      <Card p={4}>
         <Box fontWeight={'bold'}>基本信息</Box>
         <Flex alignItems={'center'} mt={4}>
           <Box flex={'0 0 80px'} w={0}>
@@ -140,7 +140,7 @@ const ModelEditForm = ({
             元/1K tokens(包括上下文和回答)
           </Box>
         </Flex>
-        <Flex alignItems={'center'} mt={5}>
+        <Flex alignItems={'center'} mt={5} display={'none'}>
           <Box flex={'0 0 80px'} w={0}>
             收藏人数:
           </Box>
@@ -155,12 +155,12 @@ const ModelEditForm = ({
               size={'sm'}
               onClick={openConfirm(handleDelModel)}
             >
-              删除AI助手
+              删除知识库
             </Button>
           </Flex>
         )}
       </Card>
-      <Card p={4} display={'none'}>
+      <Card p={4}>
         <Box fontWeight={'bold'}>模型效果</Box>
         <FormControl mt={4}>
           <Flex alignItems={'center'}>

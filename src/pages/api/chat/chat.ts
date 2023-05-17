@@ -53,6 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // 读取对话内容
     const prompts = [...content, prompt];
 
+    console.log(model.chat.useKb, 'model.chat.useKb');
     // 使用了知识库搜索
     if (model.chat.useKb) {
       const { code, searchPrompts } = await searchKb({

@@ -111,7 +111,7 @@ const PcSliderBar = ({
             leftIcon={<AddIcon />}
             onClick={() => router.replace(`/chat?modelId=${modelId}`)}
           >
-            新对话
+            新增邮件
           </Button>
           {models.length > 1 && (
             <Box
