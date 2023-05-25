@@ -99,7 +99,6 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
         </FormControl>
         <Flex align={'center'} justifyContent={'space-between'} mt={6} color={'myBlue.600'}>
           <Box
-            display={'none'}
             cursor={'pointer'}
             _hover={{ textDecoration: 'underline' }}
             onClick={() => setPageType('forgetPassword')}
@@ -108,7 +107,6 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
             忘记密码?
           </Box>
           <Box
-            display={'none'}
             cursor={'pointer'}
             _hover={{ textDecoration: 'underline' }}
             onClick={() => setPageType('register')}

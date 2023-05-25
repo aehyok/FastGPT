@@ -1,3 +1,13 @@
+/*
+ * @Author: 刘启明 455043818@qq.com
+ * @Date: 2023-05-15 17:56:04
+ * @LastEditors: 刘启明 455043818@qq.com
+ * @LastEditTime: 2023-05-18 17:03:49
+ * @FilePath: \FastGPT\src\service\utils\sendNote.ts
+ * @Description:
+ *
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
+ */
 import * as nodemailer from 'nodemailer';
 import { UserAuthTypeEnum } from '@/constants/common';
 import Dysmsapi, * as dysmsapi from '@alicloud/dysmsapi20170525';
@@ -19,19 +29,19 @@ const mailTransport = nodemailer.createTransport({
 
 const emailMap: { [key: string]: any } = {
   [UserAuthTypeEnum.register]: {
-    subject: '注册 FastGPT 账号',
-    html: (code: string) => `<div>您正在注册 FastGPT 账号，验证码为：${code}</div>`
+    subject: '注册 AI智能客服  账号',
+    html: (code: string) => `<div>您正在注册 AI智能客服 账号，验证码为：${code}</div>`
   },
   [UserAuthTypeEnum.findPassword]: {
-    subject: '修改 FastGPT 密码',
-    html: (code: string) => `<div>您正在修改 FastGPT 账号密码，验证码为：${code}</div>`
+    subject: '修改 AI智能客服  密码',
+    html: (code: string) => `<div>您正在修改 AI智能客服  账号密码，验证码为：${code}</div>`
   }
 };
 
 export const sendEmailCode = (email: string, code: string, type: `${UserAuthTypeEnum}`) => {
   return new Promise((resolve, reject) => {
     const options = {
-      from: `"FastGPT" ${myEmail}`,
+      from: `"AI智能客服 " ${myEmail}`,
       to: email,
       subject: emailMap[type]?.subject,
       html: emailMap[type]?.html(code)

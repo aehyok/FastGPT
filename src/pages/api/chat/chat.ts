@@ -51,7 +51,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const modelConstantsData = ChatModelMap[model.chat.chatModel];
 
     // 读取对话内容
-    const prompts = [...content, prompt];
+    // const prompts = [...content, prompt];
+    const prompts = [prompt];
 
     console.log(model.chat.useKb, 'model.chat.useKb');
     // 使用了知识库搜索
@@ -63,7 +64,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         model,
         userId
       });
-
+      console.log(searchPrompts, 'searchPrompts');
+      console.log(prompts, 'prompts');
       // search result is empty
       if (code === 201) {
         return res.send(searchPrompts[0]?.value);
@@ -84,6 +86,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       2
     );
 
+    console.log('temperature温度:', temperature);
+    console.log('messages:', prompts);
     // 发出请求
     const { streamResponse } = await modelServiceToolMap[model.chat.chatModel].chatCompletion({
       apiKey: userOpenAiKey || systemAuthKey,

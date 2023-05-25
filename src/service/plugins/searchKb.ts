@@ -30,9 +30,9 @@ export const searchKb = async ({
 }> => {
   async function search(textArr: string[] = []) {
     const limitMap: Record<ModelVectorSearchModeEnum, number> = {
-      [ModelVectorSearchModeEnum.hightSimilarity]: 15,
-      [ModelVectorSearchModeEnum.noContext]: 15,
-      [ModelVectorSearchModeEnum.lowSimilarity]: 20
+      [ModelVectorSearchModeEnum.hightSimilarity]: 3,
+      [ModelVectorSearchModeEnum.noContext]: 3,
+      [ModelVectorSearchModeEnum.lowSimilarity]: 3
     };
     // 获取提示词的向量
     const { vectors: promptVectors } = await openaiCreateEmbedding({
@@ -54,7 +54,10 @@ export const searchKb = async ({
           ],
           order: [{ field: 'vector', mode: `<=> '[${promptVector}]'` }],
           limit: limitMap[model.chat.searchMode]
-        }).then((res) => res.rows)
+        }).then((res) => {
+          console.log('res.rows', res.rows);
+          return res.rows;
+        })
       )
     );
 
@@ -70,7 +73,11 @@ export const searchKb = async ({
       })
     );
 
-    return filterSearch.map((item) => item.map((item) => `${item.q}\n${item.a}`).join('\n'));
+    return filterSearch.map((item) =>
+      item
+        .map((item, index) => `第${index + 1}段:\n问题：${item.q}\n\n答案：${item.a}`)
+        .join('\n\n')
+    );
   }
   const modelConstantsData = ChatModelMap[model.chat.chatModel];
 
@@ -104,7 +111,7 @@ export const searchKb = async ({
       ? [
           {
             obj: ChatRoleEnum.System,
-            value: `知识库是关于"${model.name}"的内容,根据知识库内容回答问题.`
+            value: `上下文是关于"${model.name}"的内容,根据上下文内容回答问题,如果与上下文有关，直接输出上下文中的答案进行回答问题，如果问题与上面的上下文不相关，则先回答不相关三个字，再换行根据您的理解抛开上下文来回答问题即可.`
           }
         ]
       : [
@@ -119,6 +126,7 @@ export const searchKb = async ({
           }
         ])
   ];
+  console.log(fixedPrompts, 'fixedPrompts');
   const fixedSystemTokens = modelToolMap[model.chat.chatModel].countTokens({
     messages: fixedPrompts
   });
@@ -134,6 +142,8 @@ export const searchKb = async ({
     .join('\n')
     .trim();
 
+  console.log(filterSystemPrompt, 'filterSystemPrompt');
+  console.log(model.chat.searchMode, 'model.chat.searchMode');
   /* 高相似度+不回复 */
   if (!filterSystemPrompt && model.chat.searchMode === ModelVectorSearchModeEnum.hightSimilarity) {
     return {
@@ -167,7 +177,7 @@ export const searchKb = async ({
     searchPrompts: [
       {
         obj: ChatRoleEnum.System,
-        value: `知识库:${filterSystemPrompt}`
+        value: `上下文信息:\n${filterSystemPrompt}`
       },
       ...fixedPrompts
     ]

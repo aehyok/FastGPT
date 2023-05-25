@@ -110,7 +110,7 @@ export const ModelDataStatusMap: Record<`${ModelDataStatusEnum}`, string> = {
 export enum ModelVectorSearchModeEnum {
   hightSimilarity = 'hightSimilarity', // 高相似度+禁止回复
   lowSimilarity = 'lowSimilarity', // 低相似度
-  noContext = 'noContex' // 高相似度+无上下文回复
+  noContext = 'noContext' // 高相似度+无上下文回复
 }
 export const ModelVectorSearchModeMap: Record<
   `${ModelVectorSearchModeEnum}`,
