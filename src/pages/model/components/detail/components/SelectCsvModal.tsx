@@ -20,7 +20,7 @@ import Markdown from '@/components/Markdown';
 import { useMarkdown } from '@/hooks/useMarkdown';
 import { fileDownload } from '@/utils/file';
 
-const csvTemplate = `question,answer\n"什么是 laf","laf 是一个云函数开发平台……"\n"什么是 sealos","Sealos 是以 kubernetes 为内核的云操作系统发行版,可以……"`;
+const csvTemplate = `question,answer\n"openai这家公司是干什么的","OpenAI 是一家人工智能研究实验室和公司……"\n"ChatGPT 是用来干什么的","ChatGPT 是一种基于 OpenAI 的 GPT 模型的聊天机器人……"`;
 
 const SelectJsonModal = ({
   onClose,
