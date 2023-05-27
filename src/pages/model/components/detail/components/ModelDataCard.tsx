@@ -226,7 +226,7 @@ const ModelDataCard = ({ modelId, isOwner }: { modelId: string; isOwner: boolean
                   匹配的知识点
                   <Tooltip
                   // label={
-                  //   '对话时，会将用户的问题和知识库的 "匹配知识点" 进行比较，找到最相似的前 n 条记录，将这些记录的 "匹配知识点"+"补充知识点" 作为 chatgpt 的系统提示词。'
+                  //   '对话时，会将用户的问题和资料库的 "匹配知识点" 进行比较，找到最相似的前 n 条记录，将这些记录的 "匹配知识点"+"补充知识点" 作为 chatgpt 的系统提示词。'
                   // }
                   >
                     <QuestionOutlineIcon ml={1} />

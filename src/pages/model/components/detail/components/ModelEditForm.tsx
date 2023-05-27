@@ -148,14 +148,14 @@ const ModelEditForm = ({
         </Flex>
         {isOwner && (
           <Flex mt={5} alignItems={'center'}>
-            <Box flex={'0 0 120px'}>删除AI和知识库</Box>
+            <Box flex={'0 0 120px'}>删除AI和资料库</Box>
             <Button
               colorScheme={'gray'}
               variant={'outline'}
               size={'sm'}
               onClick={openConfirm(handleDelModel)}
             >
-              删除知识库
+              删除资料库
             </Button>
           </Flex>
         )}
@@ -206,7 +206,7 @@ const ModelEditForm = ({
           </Flex>
         </FormControl>
         <Flex mt={4} alignItems={'center'}>
-          <Box mr={4}>知识库搜索</Box>
+          <Box mr={4}>资料库搜索</Box>
           <Switch
             isDisabled={!isOwner}
             isChecked={getValues('chat.useKb')}

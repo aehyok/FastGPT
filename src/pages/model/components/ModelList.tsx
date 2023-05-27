@@ -94,7 +94,7 @@ const ModelList = ({ modelId }: { modelId: string }) => {
             />
           )}
         </Flex>
-        <Tooltip label={'新建电商资料库'}>
+        <Tooltip label={'新建客服资料库'}>
           <IconButton
             h={'32px'}
             icon={<AddIcon />}

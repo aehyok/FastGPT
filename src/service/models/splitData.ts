@@ -1,4 +1,4 @@
-/* 模型的知识库 */
+/* 模型的资料库 */
 import { Schema, model, models, Model as MongoModel } from 'mongoose';
 import { ModelSplitDataSchema as SplitDataType } from '@/types/mongoSchema';
 

@@ -55,7 +55,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const prompts = [prompt];
 
     console.log(model.chat.useKb, 'model.chat.useKb');
-    // 使用了知识库搜索
+    // 使用了资料库搜索
     if (model.chat.useKb) {
       const { code, searchPrompts } = await searchKb({
         userOpenAiKey,
@@ -73,7 +73,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       prompts.splice(prompts.length - 3, 0, ...searchPrompts);
     } else {
-      // 没有用知识库搜索，仅用系统提示词
+      // 没有用资料库搜索，仅用系统提示词
       model.chat.systemPrompt &&
         prompts.splice(prompts.length - 3, 0, {
           obj: ChatRoleEnum.System,
