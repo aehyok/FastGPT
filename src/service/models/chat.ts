@@ -31,6 +31,10 @@ const ChatSchema = new Schema({
     type: String,
     default: '历史记录'
   },
+  product: {
+    type: String,
+    default: '默认手机'
+  },
   latestChat: {
     type: String,
     default: ''

@@ -95,6 +95,7 @@ export interface ChatSchema {
   loadAmount: number;
   updateTime: Date;
   content: ChatItemType[];
+  product: string;
 }
 export interface ChatPopulate extends ChatSchema {
   userId: UserModelSchema;

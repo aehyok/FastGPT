@@ -10,15 +10,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await connectToDatabase();
 
+    console.log(Chat, 'chat---111');
     const data = await Chat.find(
       {
         userId
       },
-      '_id title modelId updateTime latestChat'
+      '_id title modelId updateTime latestChat product'
     )
       .sort({ updateTime: -1 })
       .limit(20);
 
+    console.log(data, 'data-------');
     jsonRes(res, {
       data
     });
