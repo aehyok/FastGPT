@@ -26,4 +26,5 @@ export type HistoryItemType = {
   modelId: string;
   title: string;
   latestChat: string;
+  product: string;
 };

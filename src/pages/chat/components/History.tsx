@@ -33,8 +33,15 @@ import type { HistoryItemType, ExportChatType } from '@/types/chat';
 import { useChatStore } from '@/store/chat';
 import { useScreen } from '@/hooks/useScreen';
 import ModelList from './ModelList';
-
+import { useForm } from 'react-hook-form';
 import styles from '../index.module.scss';
+import { postSaveInitChat } from '@/api/chat';
+import { useToast } from '@/hooks/useToast';
+
+interface InitChatType {
+  title: string;
+  product: string;
+}
 
 const PcSliderBar = ({
   isPcDevice,
@@ -45,6 +52,9 @@ const PcSliderBar = ({
   onclickDelHistory: (historyId: string) => Promise<void>;
   onclickExportChat: (type: ExportChatType) => void;
 }) => {
+  const { toast } = useToast();
+  const { register, handleSubmit } = useForm<InitChatType>();
+
   const router = useRouter();
   const { modelId = '', chatId = '' } = router.query as { modelId: string; chatId: string };
   const theme = useTheme();
@@ -94,6 +104,28 @@ const PcSliderBar = ({
     },
     [isPc]
   );
+
+  const onSaveInitChat = useCallback(async ({ title, product }: InitChatType) => {
+    console.log('onSaveInitChat', title, product);
+    try {
+      const newChatId = await postSaveInitChat({
+        newChatId: '',
+        modelId,
+        chatId,
+        title: title,
+        product: product
+      });
+      console.log(newChatId, '----newChatId----');
+      loadHistory({ pageNum: 1, init: true });
+      toast({
+        title: '添加成功',
+        status: 'success'
+      });
+      onClose();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -272,26 +304,47 @@ const PcSliderBar = ({
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>添加邮件</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>客户邮件</FormLabel>
-              <Input ref={initialRef} placeholder="请输入客户的邮件" />
-            </FormControl>
+          <form onSubmit={handleSubmit(onSaveInitChat)}>
+            <ModalHeader>添加邮件</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody pb={6}>
+              <FormControl>
+                <FormLabel>客户邮件</FormLabel>
+                <Input
+                  placeholder="请输入客户的邮件"
+                  {...register('title', {
+                    required: '请输入邮箱或备注',
+                    pattern: {
+                      value:
+                        /(^1[3456789]\d{9}$)|(^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$)/,
+                      message: '邮箱/格式错误'
+                    }
+                  })}
+                />
+              </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>服务产品</FormLabel>
-              <Input placeholder="请输入客户购买的产品" />
-            </FormControl>
-          </ModalBody>
+              <FormControl mt={4}>
+                <FormLabel>服务产品</FormLabel>
+                <Input
+                  placeholder="请输入客户购买的产品"
+                  {...register('product', {
+                    required: '请输入客户购买的产品',
+                    pattern: {
+                      value: /(^[\u4e00-\u9fa5A-Za-z0-9]+$)/,
+                      message: '请输入客户购买的产品'
+                    }
+                  })}
+                />
+              </FormControl>
+            </ModalBody>
 
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              保存
-            </Button>
-            <Button onClick={onClose}>取消</Button>
-          </ModalFooter>
+            <ModalFooter>
+              <Button type="submit" colorScheme="blue" mr={3}>
+                保存
+              </Button>
+              <Button onClick={onClose}>取消</Button>
+            </ModalFooter>
+          </form>
         </ModalContent>
       </Modal>
     </>

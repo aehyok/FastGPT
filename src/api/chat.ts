@@ -31,6 +31,19 @@ export const postSaveChat = (data: {
 }) => POST<string>('/chat/saveChat', data);
 
 /**
+ * 初始化聊天
+ * @param data
+ * @returns
+ */
+export const postSaveInitChat = (data: {
+  modelId: string;
+  newChatId: string;
+  chatId: string;
+  product: string;
+  title: string;
+}) => POST<string>('/chat/initChat', data);
+
+/**
  * 删除一句对话
  */
 export const delChatRecordByIndex = (chatId: string, contentId: string) =>
