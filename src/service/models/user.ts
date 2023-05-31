@@ -37,6 +37,11 @@ const UserSchema = new Schema({
       default: 15
     }
   },
+  companyId: {
+    type: Schema.Types.ObjectId,
+    ref: 'company',
+    required: true
+  },
   openaiKey: {
     type: String,
     default: ''

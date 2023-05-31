@@ -16,10 +16,24 @@ export interface UserModelSchema {
   inviterId?: string;
   promotionAmount: number;
   openaiKey: string;
+  companyId: string;
   createTime: number;
   promotion: {
     rate: number;
   };
+}
+
+export interface CompanyModelSchema {
+  _id: string;
+  companyShortName: string;
+  companyName: string;
+  companyLogo: string;
+  companyIntro: string;
+  companyAddress: string;
+  companyEmail: string;
+  companyPhone: string;
+  createTime: Date;
+  createBy: string;
 }
 
 export interface AuthCodeSchema {

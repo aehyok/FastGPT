@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { jsonRes } from '@/service/response';
-import { connectToDatabase, Chat } from '@/service/mongo';
+import { connectToDatabase, Chat, Company } from '@/service/mongo';
 import { authToken } from '@/service/utils/auth';
 
 /* 获取历史记录 */
@@ -11,6 +11,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await connectToDatabase();
 
     console.log(Chat, 'chat---111');
+
+    // const list = await Company.find({});
+    // console.log('list', list);
+    // console.log('结束')
+
     const data = await Chat.find(
       {
         userId
