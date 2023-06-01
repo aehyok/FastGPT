@@ -52,3 +52,6 @@ export * from './models/openapi';
 export * from './models/promotionRecord';
 export * from './models/collection';
 export * from './models/company';
+export * from './models/menu';
+export * from './models/role';
+export * from './models/permission';

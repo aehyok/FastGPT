@@ -5,8 +5,6 @@ import {
   ModelVectorSearchModeEnum,
   ChatModelType
 } from '@/constants/model';
-import type { DataType } from './data';
-
 export interface UserModelSchema {
   _id: string;
   username: string;
@@ -23,6 +21,48 @@ export interface UserModelSchema {
   };
 }
 
+export interface MenuModelSchema {
+  _id: string;
+  name: string;
+  code: string;
+  type: string;
+  url: string;
+  order: decimal;
+  fatherId: string;
+  remark: string;
+  isEnabled: boolean;
+  isDeleted: boolean;
+  createAt: string;
+  updateAt: string;
+  createBy: Date;
+  updateBy: Date;
+}
+
+export interface PermissionModelSchema {
+  _id: string;
+  roleId: string;
+  menuId: string;
+  isDelete: Boolean;
+  createAt: Date;
+  updateAt: Date;
+  createBy: string;
+  updateBy: string;
+  remark: string;
+}
+
+export interface RoleModelSchema {
+  _id: string;
+  name: string;
+  code: string;
+  isSystem: boolean;
+  order: decimal;
+  isEnable: boolean;
+  isDelete: boolean;
+  createAt: Date;
+  updateAt: Date;
+  createBy: string;
+  updateBy: string;
+}
 export interface CompanyModelSchema {
   _id: string;
   companyShortName: string;
