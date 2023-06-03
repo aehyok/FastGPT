@@ -20,7 +20,9 @@ import {
   FormLabel,
   Input,
   ModalCloseButton,
-  useDisclosure
+  useDisclosure,
+  FormErrorMessage,
+  Select
 } from '@chakra-ui/react';
 import { ChatIcon } from '@chakra-ui/icons';
 import { useQuery } from '@tanstack/react-query';
@@ -41,6 +43,7 @@ import { useToast } from '@/hooks/useToast';
 interface InitChatType {
   title: string;
   product: string;
+  modelId?: string;
 }
 
 const PcSliderBar = ({
@@ -53,7 +56,11 @@ const PcSliderBar = ({
   onclickExportChat: (type: ExportChatType) => void;
 }) => {
   const { toast } = useToast();
-  const { register, handleSubmit } = useForm<InitChatType>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<InitChatType>();
 
   const router = useRouter();
   const { modelId = '', chatId = '' } = router.query as { modelId: string; chatId: string };
@@ -105,7 +112,7 @@ const PcSliderBar = ({
     [isPc]
   );
 
-  const onSaveInitChat = useCallback(async ({ title, product }: InitChatType) => {
+  const onSaveInitChat = useCallback(async ({ title, product, modelId }: InitChatType) => {
     console.log('onSaveInitChat', title, product);
     try {
       const newChatId = await postSaveInitChat({
@@ -308,7 +315,7 @@ const PcSliderBar = ({
             <ModalHeader>添加邮件</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
-              <FormControl>
+              <FormControl mt={8} isInvalid={!!errors.title}>
                 <FormLabel>客户邮件</FormLabel>
                 <Input
                   placeholder="请输入客户的邮件"
@@ -321,9 +328,12 @@ const PcSliderBar = ({
                     }
                   })}
                 />
+                <FormErrorMessage position={'absolute'} fontSize="xs">
+                  {!!errors.title && errors.title.message}
+                </FormErrorMessage>
               </FormControl>
 
-              <FormControl mt={4}>
+              <FormControl mt={8} isInvalid={!!errors.product}>
                 <FormLabel>服务产品</FormLabel>
                 <Input
                   placeholder="请输入客户购买的产品"
@@ -335,6 +345,19 @@ const PcSliderBar = ({
                     }
                   })}
                 />
+                <FormErrorMessage position={'absolute'} fontSize="xs">
+                  {!!errors.product && errors.product.message}
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl mt={8}>
+                <FormLabel>选择客服资料库</FormLabel>
+                <Select placeholder="请选择客服资料库" {...register('modelId', {})}>
+                  {models.map((item) => (
+                    <option key={item._id} value={item.name}>
+                      {item.name}
+                    </option>
+                  ))}
+                </Select>
               </FormControl>
             </ModalBody>
 

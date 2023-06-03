@@ -36,7 +36,7 @@ export const postSaveChat = (data: {
  * @returns
  */
 export const postSaveInitChat = (data: {
-  modelId: string;
+  modelId?: string;
   newChatId: string;
   chatId: string;
   product: string;
