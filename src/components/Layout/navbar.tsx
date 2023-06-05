@@ -32,8 +32,8 @@ const Navbar = () => {
       {
         label: '企业管理',
         icon: 'develop',
-        link: `/enterprise?modelId=${lastModelId}`,
-        activeLink: ['/enterprise']
+        link: `/company?modelId=${lastModelId}`,
+        activeLink: ['/company']
       }
       // {
       //   label: '共享',

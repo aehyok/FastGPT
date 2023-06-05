@@ -1,5 +1,5 @@
 import { Input } from '@chakra-ui/react';
-const EnterpriseSearch = () => {
+const SearchList = () => {
   return (
     <div>
       <Input placeholder="Search" width="auto" />
@@ -7,4 +7,4 @@ const EnterpriseSearch = () => {
   );
 };
 
-export default EnterpriseSearch;
+export default SearchList;

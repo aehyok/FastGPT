@@ -11,7 +11,6 @@ const RoleSchema = new Schema({
   isSystem: {
     type: Number
   },
-
   phone: {
     type: String,
     required: true

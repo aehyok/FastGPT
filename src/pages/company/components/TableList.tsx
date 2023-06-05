@@ -9,7 +9,7 @@ import {
   TableCaption,
   TableContainer
 } from '@chakra-ui/react';
-const EnterpriseTable = () => {
+const TableList = () => {
   return (
     <div>
       <TableContainer>
@@ -52,4 +52,4 @@ const EnterpriseTable = () => {
   );
 };
 
-export default EnterpriseTable;
+export default TableList;
