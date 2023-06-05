@@ -28,6 +28,12 @@ const Navbar = () => {
         icon: 'model',
         link: `/model?modelId=${lastModelId}`,
         activeLink: ['/model']
+      },
+      {
+        label: '企业管理',
+        icon: 'develop',
+        link: `/enterprise?modelId=${lastModelId}`,
+        activeLink: ['/enterprise']
       }
       // {
       //   label: '共享',
