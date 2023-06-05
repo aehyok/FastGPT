@@ -22,7 +22,6 @@ const Navbar = () => {
         link: `/chat?modelId=${lastChatModelId}&chatId=${lastChatId}`,
         activeLink: ['/chat']
       },
-
       {
         label: '客服资料库',
         icon: 'model',
@@ -32,8 +31,62 @@ const Navbar = () => {
       {
         label: '企业管理',
         icon: 'develop',
-        link: `/company?modelId=${lastModelId}`,
+        link: `/company`,
         activeLink: ['/company']
+      },
+      {
+        label: '帐单管理',
+        icon: 'invoice',
+        link: `/invoice`,
+        activeLink: ['/invoice']
+      },
+      {
+        label: '总览统计',
+        icon: 'statistics',
+        link: `/statistics`,
+        activeLink: ['/statistics']
+      },
+      {
+        label: '用户管理',
+        icon: 'users',
+        link: `/users`,
+        activeLink: ['/uses']
+      },
+      {
+        label: '菜单管理',
+        icon: 'menu',
+        link: `/menu`,
+        activeLink: ['/menu']
+      },
+      {
+        label: '角色管理',
+        icon: 'role',
+        link: `/role`,
+        activeLink: ['/role']
+      },
+      {
+        label: '设置',
+        icon: 'setting',
+        link: `/setting`,
+        activeLink: ['/setting']
+      },
+      {
+        label: '付费流程',
+        icon: 'flow',
+        link: `/flow`,
+        activeLink: ['/flow']
+      },
+      {
+        label: '使用指南',
+        icon: 'guide',
+        link: `/guide`,
+        activeLink: ['/guide']
+      },
+      {
+        label: '账户',
+        icon: 'account',
+        link: `/account`,
+        activeLink: ['/account']
       }
       // {
       //   label: '共享',
