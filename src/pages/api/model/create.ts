@@ -25,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const authCount = await Model.countDocuments({
       userId
     });
-    if (authCount >= 30) {
+    if (authCount >= 3) {
       throw new Error('上限 30 个助手');
     }
 
