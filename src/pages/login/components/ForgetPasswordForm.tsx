@@ -75,7 +75,7 @@ const RegisterForm = ({ setPageType, loginSuccess }: Props) => {
   return (
     <>
       <Box fontWeight={'bold'} fontSize={'2xl'} textAlign={'center'}>
-        找回 AI智能客服 账号
+        找回账号
       </Box>
       <form onSubmit={handleSubmit(onclickFindPassword)}>
         <FormControl mt={5} isInvalid={!!errors.username}>

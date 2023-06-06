@@ -30,7 +30,7 @@ const CompanySchema = new Schema({
     type: String,
     required: true
   },
-  createTime: {
+  createAt: {
     type: Date,
     default: () => new Date()
   },

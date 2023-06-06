@@ -72,7 +72,7 @@ export interface CompanyModelSchema {
   companyAddress: string;
   companyEmail: string;
   companyPhone: string;
-  createTime: Date;
+  createAt: Date;
   createBy: string;
 }
 
