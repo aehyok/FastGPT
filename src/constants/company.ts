@@ -1,13 +1,4 @@
-export const COLUMNS = [
-  'name',
-  'shortName',
-  'logo',
-  'intro',
-  'address',
-  'email',
-  'phone',
-  'operation'
-];
+export const COLUMNS = ['name', 'shortName', 'logo', 'intro', 'address', 'email', 'phone'];
 
 export const data = [
   {
@@ -244,3 +235,18 @@ export const data = [
     socialCode: 'WQ758914PM1KGTXJ5K'
   }
 ];
+
+export function useOperationBtnHook({ onOpen }) {
+  const identificationFun = (type: string) => {
+    switch (type) {
+      case 'add':
+        return onOpen;
+      case 'edit':
+        return onOpen;
+    }
+  };
+
+  return {
+    identificationFun
+  };
+}

@@ -3,8 +3,9 @@ import { Box, Flex } from '@chakra-ui/react';
 import TableList from './components/TableList';
 import SearchList from './components/SearchList';
 import SearchableTable from '../../hooks/useTable';
-import { COLUMNS, data } from '@/constants/enterprise';
+import { COLUMNS, data } from '@/constants/company';
 import { Heading } from '@chakra-ui/react';
+import { operatingButton } from './config';
 const Company = () => {
   return (
     <Flex h={'100%'} position={'relative'} direction={'column'}>
@@ -17,7 +18,7 @@ const Company = () => {
 
       <Box flex={1} h={'100%'} position={'relative'} m={5}>
         {/* <CompanyTable /> */}
-        <TableList data={data} columns={COLUMNS} />
+        <SearchableTable data={data} columns={COLUMNS} operatingButton={operatingButton} />
         {/* {modelId && <ModelDetail modelId={modelId} isPc={isPc} />} */}
       </Box>
     </Flex>

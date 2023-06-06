@@ -13,54 +13,56 @@ import {
   Box,
   Text,
   Flex,
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
-  AlertDialogCloseButton,
   useDisclosure
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
-
-const SearchableTable = ({ data, columns }) => {
+import AlertDialogForm from './useAlertDialog';
+import { useOperationBtnHook } from '@/constants/company';
+const SearchableTable = ({ data, columns, operatingButton }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
-
+  const { identificationFun } = useOperationBtnHook({ onOpen });
+  let aaa = false;
   const filteredData = data.filter((item) =>
     Object.values(item).some((value) =>
       value.toString().toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
 
+  const onConfirm = () => {
+    console.log('asdad');
+  };
+
   return (
     <Box>
-      <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Delete Customer
-            </AlertDialogHeader>
+      <AlertDialogForm
+        isOpen={isOpen}
+        onClose={onClose}
+        description={'提示文字'}
+        title={'啊的加速度'}
+        onConfirm={onConfirm}
+      />
 
-            <AlertDialogBody>Are you sure? You can't undo this action afterwards.</AlertDialogBody>
-
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button colorScheme="red" onClick={onClose} ml={3}>
-                Delete
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
       <Flex w={'100%'} display="flex" justifyContent={'space-between'}>
-        <Button ml={2} onClick={onOpen} disabled={!searchTerm} colorScheme="blue" variant="outline">
-          新增
-        </Button>
+        <Box>
+          {operatingButton.map((item, index) =>
+            item.type === 'head' ? (
+              <Button
+                ml={2}
+                onClick={identificationFun(item.onClickType)}
+                disabled={!searchTerm}
+                colorScheme="blue"
+                variant="outline"
+                key={index}
+              >
+                {item.name}
+              </Button>
+            ) : (
+              ''
+            )
+          )}
+        </Box>
         <Box>
           <InputGroup mb={4}>
             <InputLeftElement pointerEvents="none" children={<SearchIcon />} />
@@ -84,6 +86,7 @@ const SearchableTable = ({ data, columns }) => {
               {columns.map((column) => (
                 <Th key={column}>{column}</Th>
               ))}
+              <Th>OPERATION</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -92,6 +95,23 @@ const SearchableTable = ({ data, columns }) => {
                 {Object.values(columns).map((value, index) => (
                   <Td key={index}>{item[value]}</Td>
                 ))}
+                <Td>
+                  {operatingButton.map((btnItem, btnindex) =>
+                    btnItem.type !== 'head' ? (
+                      <Button
+                        variant="ghost"
+                        onClick={identificationFun(btnItem.onClickType)}
+                        disabled={!searchTerm}
+                        colorScheme="blue"
+                        key={btnindex}
+                      >
+                        {btnItem.render ? btnItem.render(item) : btnItem.name}
+                      </Button>
+                    ) : (
+                      ''
+                    )
+                  )}
+                </Td>
               </Tr>
             ))}
           </Tbody>
