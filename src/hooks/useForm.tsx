@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -11,21 +11,31 @@ import {
   Button,
   VStack,
   HStack,
-  Box
+  Box,
+  AlertDialogFooter
 } from '@chakra-ui/react';
 
-const Form = ({ fields, onSubmit }) => {
+const Form = ({ fields, onSubmit, formData, type, onClose }) => {
   const [formValues, setFormValues] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(formValues);
+    setIsLoading(true);
+    await onSubmit(formValues, type);
+    setIsLoading(false);
+    onClose();
   };
+
+  // setFormValues(formData)
+  useEffect(() => {
+    /** 执行逻辑 */
+    setFormValues(formData);
+  }, []);
 
   return (
     <Box as="form" onSubmit={handleSubmit}>
@@ -76,12 +86,16 @@ const Form = ({ fields, onSubmit }) => {
             <FormHelperText>{field.helperText}</FormHelperText>
           </FormControl>
         ))}
-        {/* <HStack>
-          <Button type="submit">Submit</Button>
-          <Button type="reset" onClick={() => setFormValues({})}>
-            Reset
-          </Button>
-        </HStack> */}
+        <HStack display="flex" justifyContent={'flex-end'}>
+          <Box mb="10px">
+            <Button type="reset" onClick={() => setFormValues({})} mr="10px">
+              清空
+            </Button>
+            <Button type="submit" colorScheme="red" isLoading={isLoading}>
+              确定
+            </Button>
+          </Box>
+        </HStack>
       </VStack>
     </Box>
   );

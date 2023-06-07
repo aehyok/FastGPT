@@ -18,29 +18,55 @@ import {
 import { SearchIcon } from '@chakra-ui/icons';
 import AlertDialogForm from './useAlertDialog';
 import { useOperationBtnHook } from '@/constants/company';
-const SearchableTable = ({ data, columns, operatingButton }) => {
+const SearchableTable = ({ data, columns, operatingButton, onConfirm }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [formConfig, setFormConfig] = useState({});
+  const [formValues, setFormValues] = useState({});
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
   const { identificationFun } = useOperationBtnHook({ onOpen });
-  let aaa = false;
   const filteredData = data.filter((item) =>
     Object.values(item).some((value) =>
       value.toString().toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
 
-  const onConfirm = () => {
-    console.log('asdad');
+  // const onConfirm = () => {
+  //   console.log('asdad');
+  // };
+
+  const btnClick = ({
+    onClickType,
+    fields,
+    dialogTitle,
+    dialogDescription
+  }: {
+    onClickType: string;
+    fields: any;
+    dialogTitle: string;
+    dialogDescription: string;
+  }) => {
+    identificationFun(onClickType);
+    const formData = {
+      formList: fields,
+      title: dialogTitle,
+      description: dialogDescription,
+      onClickType: onClickType
+    };
+    setFormConfig(formData);
   };
 
   return (
     <Box>
       <AlertDialogForm
+        onClickType={formConfig.onClickType}
+        formValues={formValues}
+        fields={formConfig?.formList}
         isOpen={isOpen}
         onClose={onClose}
-        description={'提示文字'}
-        title={'啊的加速度'}
+        description={formConfig.description}
+        title={formConfig.title}
         onConfirm={onConfirm}
       />
 
@@ -50,7 +76,9 @@ const SearchableTable = ({ data, columns, operatingButton }) => {
             item.type === 'head' ? (
               <Button
                 ml={2}
-                onClick={identificationFun(item.onClickType)}
+                onClick={() => {
+                  setFormValues({}), btnClick(item);
+                }}
                 disabled={!searchTerm}
                 colorScheme="blue"
                 variant="outline"
@@ -100,7 +128,9 @@ const SearchableTable = ({ data, columns, operatingButton }) => {
                     btnItem.type !== 'head' ? (
                       <Button
                         variant="ghost"
-                        onClick={identificationFun(btnItem.onClickType)}
+                        onClick={() => {
+                          setFormValues(item), btnClick(btnItem);
+                        }}
                         disabled={!searchTerm}
                         colorScheme="blue"
                         key={btnindex}

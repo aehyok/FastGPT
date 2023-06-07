@@ -2,6 +2,7 @@ export const COLUMNS = ['name', 'shortName', 'logo', 'intro', 'address', 'email'
 
 export const data = [
   {
+    id: 1,
     name: '崔哲瀚',
     shortName: 'Pagac - Effertz',
     logo: 'http://dummyimage.com/242x384.png/4a342a/2a3810',
@@ -20,6 +21,7 @@ export const data = [
     socialCode: '594939449717536'
   },
   {
+    id: 2,
     name: '杨明辉',
     shortName: 'Smitham, Durgan and Roberts',
     logo: 'http://dummyimage.com/155x198.png/654130/56183d',
@@ -38,6 +40,7 @@ export const data = [
     socialCode: '3Y285641UEDCAWYRU5'
   },
   {
+    id: 3,
     name: '王明辉',
     shortName: 'Streich Group',
     logo: 'http://dummyimage.com/115x260.png/6a4645/0c3a35',
@@ -56,6 +59,7 @@ export const data = [
     socialCode: '551743672150084'
   },
   {
+    id: 4,
     name: '雷鹏涛',
     shortName: 'Johnston - Miller',
     logo: 'http://dummyimage.com/129x245.png/330a0f/7f4d75',
@@ -74,6 +78,7 @@ export const data = [
     socialCode: 'LQ488950610RYDTKTE'
   },
   {
+    id: 5,
     name: '孙弘文',
     shortName: 'Rohan - Erdman',
     logo: 'http://dummyimage.com/128x136.png/251141/693768',
@@ -92,6 +97,7 @@ export const data = [
     socialCode: '542732638748079'
   },
   {
+    id: 6,
     name: '严君浩',
     shortName: 'Hills - Bradtke',
     logo: 'http://dummyimage.com/467x436.png/1f110a/6e7425',
@@ -110,6 +116,7 @@ export const data = [
     socialCode: '806824047276600'
   },
   {
+    id: 7,
     name: '江泽洋',
     shortName: 'Schoen Inc',
     logo: 'http://dummyimage.com/338x106.png/261046/553d68',
@@ -128,6 +135,7 @@ export const data = [
     socialCode: '496478694458081'
   },
   {
+    id: 8,
     name: '赖思淼',
     shortName: 'Roob, Schmidt and Cummings',
     logo: 'http://dummyimage.com/392x401.png/182a08/0c5968',
@@ -146,6 +154,7 @@ export const data = [
     socialCode: '149270177063405'
   },
   {
+    id: 9,
     name: '郑晓啸',
     shortName: 'Hagenes - Ritchie',
     logo: 'http://dummyimage.com/403x231.png/411642/02546c',
@@ -164,6 +173,7 @@ export const data = [
     socialCode: '111528686EJPTM4LF5'
   },
   {
+    id: 10,
     name: '韩熠彤',
     shortName: 'Heathcote, Funk and Glover',
     logo: 'http://dummyimage.com/155x114.png/20425e/3f2154',
@@ -182,6 +192,7 @@ export const data = [
     socialCode: '402935851696472'
   },
   {
+    id: 11,
     name: '钟锦程',
     shortName: 'Kuhic - Kirlin',
     logo: 'http://dummyimage.com/320x183.png/0b6028/466c32',
@@ -199,6 +210,7 @@ export const data = [
     socialCode: '578303932650023'
   },
   {
+    id: 12,
     name: '孟鹤轩',
     shortName: 'Conroy, DuBuque and Goyette',
     logo: 'http://dummyimage.com/279x433.png/607d32/604e7b',
@@ -217,6 +229,7 @@ export const data = [
     socialCode: '349008087165107'
   },
   {
+    id: 13,
     name: '范文昊',
     shortName: 'Daugherty and Sons',
     logo: 'http://dummyimage.com/201x380.png/54780b/616c7e',
@@ -240,8 +253,10 @@ export function useOperationBtnHook({ onOpen }) {
   const identificationFun = (type: string) => {
     switch (type) {
       case 'add':
-        return onOpen;
+        onOpen();
+        return '';
       case 'edit':
+        onOpen();
         return onOpen;
     }
   };

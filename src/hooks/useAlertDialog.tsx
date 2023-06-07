@@ -10,6 +10,9 @@ import {
 } from '@chakra-ui/react';
 import Form from './useForm';
 const AlertDialogForm = ({
+  onClickType,
+  formValues,
+  fields,
   isOpen,
   onClose,
   title,
@@ -21,22 +24,22 @@ const AlertDialogForm = ({
   const [isLoading, setIsLoading] = useState(false);
   const cancelRef = React.useRef();
 
-  const handleConfirm = async () => {
-    setIsLoading(true);
-    await onConfirm();
-    setIsLoading(false);
-    onClose();
+  // const handleConfirm = async () => {
+  //   setIsLoading(true);
+  //   await onConfirm();
+  //   setIsLoading(false);
+  //   // onClose();
+  // };
+  const onSubmit = (val) => {
+    console.log('sumbit1', val);
   };
-  const onSubmit = () => {
-    console.log('sumbit1');
-  };
-  const fields = [
-    {
-      type: 'text',
-      name: 'name',
-      label: 'name：'
-    }
-  ];
+  // const fields = [
+  //   {
+  //     type: 'text',
+  //     name: 'name',
+  //     label: 'name：'
+  //   }
+  // ];
 
   return (
     <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
@@ -47,17 +50,23 @@ const AlertDialogForm = ({
           </AlertDialogHeader>
 
           <AlertDialogBody>
-            <Form fields={fields} onSubmit={onSubmit} />
+            <Form
+              fields={fields}
+              onSubmit={onConfirm}
+              formData={formValues}
+              type={onClickType}
+              onClose={onClose}
+            />
           </AlertDialogBody>
 
-          <AlertDialogFooter>
-            <Button ref={cancelRef} onClick={onClose}>
+          {/* <AlertDialogFooter> */}
+          {/* <Button ref={cancelRef} onClick={onClose}>
               {cancelButtonText}
             </Button>
-            <Button colorScheme="red" ml={3} isLoading={isLoading} onClick={onSubmit}>
+            <Button colorScheme="red" ml={3} isLoading={isLoading} onClick={handleConfirm}>
               {confirmButtonText}
-            </Button>
-          </AlertDialogFooter>
+            </Button> */}
+          {/* </AlertDialogFooter> */}
         </AlertDialogContent>
       </AlertDialogOverlay>
     </AlertDialog>
