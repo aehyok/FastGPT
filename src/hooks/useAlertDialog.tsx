@@ -23,7 +23,6 @@ const AlertDialogForm = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const cancelRef = React.useRef();
-  console.log(typeof title, 'description', title);
 
   // const handleConfirm = async () => {
   //   setIsLoading(true);

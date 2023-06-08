@@ -1,10 +1,10 @@
-export const COLUMNS = ['name', 'shortName', 'logo', 'intro', 'address', 'email', 'phone'];
+export const COLUMNS = ['name', 'companyName', 'logo', 'intro', 'address', 'email', 'phone'];
 
 export const data = [
   {
     id: 1,
     name: '崔哲瀚',
-    shortName: 'Pagac - Effertz',
+    companyName: 'Pagac - Effertz',
     logo: 'http://dummyimage.com/242x384.png/4a342a/2a3810',
     email: 'Corbin.Schaden@gmail.com',
     intro: '叶琪',
@@ -24,7 +24,7 @@ export const data = [
   {
     id: 2,
     name: '杨明辉',
-    shortName: 'Smitham, Durgan and Roberts',
+    companyName: 'Smitham, Durgan and Roberts',
     logo: 'http://dummyimage.com/155x198.png/654130/56183d',
     email: 'Fernando97@hotmail.com',
     intro: '邹浩宇',
@@ -44,7 +44,7 @@ export const data = [
   {
     id: 3,
     name: '王明辉',
-    shortName: 'Streich Group',
+    companyName: 'Streich Group',
     logo: 'http://dummyimage.com/115x260.png/6a4645/0c3a35',
     email: 'Cielo.Pagac@gmail.com',
     intro: '沈航',
@@ -64,7 +64,7 @@ export const data = [
   {
     id: 4,
     name: '雷鹏涛',
-    shortName: 'Johnston - Miller',
+    companyName: 'Johnston - Miller',
     logo: 'http://dummyimage.com/129x245.png/330a0f/7f4d75',
     email: 'Jude_Stanton40@gmail.com',
     intro: '雷笑愚',
@@ -84,7 +84,7 @@ export const data = [
   {
     id: 5,
     name: '孙弘文',
-    shortName: 'Rohan - Erdman',
+    companyName: 'Rohan - Erdman',
     logo: 'http://dummyimage.com/128x136.png/251141/693768',
     email: 'Jarret.Ullrich@hotmail.com',
     intro: '许鸿煊',
@@ -104,7 +104,7 @@ export const data = [
   {
     id: 6,
     name: '严君浩',
-    shortName: 'Hills - Bradtke',
+    companyName: 'Hills - Bradtke',
     logo: 'http://dummyimage.com/467x436.png/1f110a/6e7425',
     email: 'Rosanna.Windler@hotmail.com',
     intro: '高晓啸',
@@ -124,7 +124,7 @@ export const data = [
   {
     id: 7,
     name: '江泽洋',
-    shortName: 'Schoen Inc',
+    companyName: 'Schoen Inc',
     logo: 'http://dummyimage.com/338x106.png/261046/553d68',
     email: 'Florian_Weimann@yahoo.com',
     intro: '张烨霖',
@@ -144,7 +144,7 @@ export const data = [
   {
     id: 8,
     name: '赖思淼',
-    shortName: 'Roob, Schmidt and Cummings',
+    companyName: 'Roob, Schmidt and Cummings',
     logo: 'http://dummyimage.com/392x401.png/182a08/0c5968',
     email: 'Heidi_McClure34@gmail.com',
     intro: '顾煜城',
@@ -164,7 +164,7 @@ export const data = [
   {
     id: 9,
     name: '郑晓啸',
-    shortName: 'Hagenes - Ritchie',
+    companyName: 'Hagenes - Ritchie',
     logo: 'http://dummyimage.com/403x231.png/411642/02546c',
     email: 'Fay_Parisian42@gmail.com',
     intro: '梁苑博',
@@ -184,7 +184,7 @@ export const data = [
   {
     id: 10,
     name: '韩熠彤',
-    shortName: 'Heathcote, Funk and Glover',
+    companyName: 'Heathcote, Funk and Glover',
     logo: 'http://dummyimage.com/155x114.png/20425e/3f2154',
     email: 'Grace.Okuneva@gmail.com',
     intro: '龙昊焱',
@@ -204,7 +204,7 @@ export const data = [
   {
     id: 11,
     name: '钟锦程',
-    shortName: 'Kuhic - Kirlin',
+    companyName: 'Kuhic - Kirlin',
     logo: 'http://dummyimage.com/320x183.png/0b6028/466c32',
     email: 'Frederic80@gmail.com',
     intro: '杨靖琪',
@@ -223,7 +223,7 @@ export const data = [
   {
     id: 12,
     name: '孟鹤轩',
-    shortName: 'Conroy, DuBuque and Goyette',
+    companyName: 'Conroy, DuBuque and Goyette',
     logo: 'http://dummyimage.com/279x433.png/607d32/604e7b',
     email: 'Ernie_Kohler@hotmail.com',
     intro: '徐哲瀚',
@@ -243,7 +243,7 @@ export const data = [
   {
     id: 13,
     name: '范文昊',
-    shortName: 'Daugherty and Sons',
+    companyName: 'Daugherty and Sons',
     logo: 'http://dummyimage.com/201x380.png/54780b/616c7e',
     email: 'Gianni_Breitenberg@hotmail.com',
     intro: '叶峻熙',
@@ -259,6 +259,127 @@ export const data = [
       '和鸭独木白长郝梁汤友西大新两观神文荒，西东大东广胡新林唐乌，宋榄大怀邓柳湔贾那姚平漫盛苏新白，东万继大桥八北西德进东玉吴虎宁，太中进塘龙文北曲子，建大柴黄庆大中骆杜感克义下滨运东河周，大南南田双文，解星石贾黑解青清里灵，江桥宛临来秀管三大柳春东新，岩石四停杜小义新东北临孝赵。',
     idNo: '869379201903218371',
     socialCode: 'WQ758914PM1KGTXJ5K'
+  }
+];
+export const USERCOLUMNS = ['name', 'avatar', 'balance', 'email', 'idCard', 'createTime'];
+
+export const userData = [
+  {
+    id: 1,
+    name: '罗哲瀚',
+    avatar: 'http://dummyimage.com/227x313.png/382e53/520360',
+    balance: 95030,
+    email: 'Mya97@hotmail.com',
+    createTime: 991783980914,
+    idCard: '693765202209238632'
+  },
+  {
+    id: 1,
+    name: '高煜祺',
+    avatar: 'http://dummyimage.com/364x225.png/807f54/3a2d1d',
+    balance: 19767,
+    email: 'Nico_Kris91@gmail.com',
+    createTime: 1625216441846,
+    idCard: '527826200212214722'
+  },
+  {
+    id: 2,
+    name: '李伟祺',
+    avatar: 'http://dummyimage.com/391x131.png/330937/505868',
+    balance: 98987,
+    email: 'Madisen42@gmail.com',
+    createTime: 1240437052131,
+    idCard: '908139201206040111'
+  },
+  {
+    id: 3,
+    name: '张熠彤',
+    avatar: 'http://dummyimage.com/282x232.png/675971/091155',
+    balance: 70316,
+    email: 'Rosa.Farrell61@yahoo.com',
+    createTime: 1107351944351,
+    idCard: '395264201607139781'
+  },
+  {
+    id: 3,
+    name: '彭懿轩',
+    avatar: 'http://dummyimage.com/228x451.png/08125a/6e132c',
+    balance: 43563,
+    email: 'Nora_Abbott26@gmail.com',
+    createTime: 1637994114047,
+    idCard: '530836200811065404'
+  },
+  {
+    id: 3,
+    name: '宋明轩',
+    avatar: 'http://dummyimage.com/469x160.png/173d75/68384e',
+    balance: 71554,
+    email: 'Noble_Howell@hotmail.com',
+    createTime: 777122407330,
+    idCard: '553295199602143684'
+  },
+  {
+    id: 4,
+    name: '江健柏',
+    avatar: 'http://dummyimage.com/317x188.png/792478/2d465c',
+    balance: 7161,
+    email: 'Libbie60@yahoo.com',
+    createTime: 1013796009437,
+    idCard: '566819200212189981'
+  },
+  {
+    id: 5,
+    name: '韦烨霖',
+    avatar: 'http://dummyimage.com/166x450.png/5a380f/1d6519',
+    balance: 40699,
+    email: 'Bessie.Rowe@yahoo.com',
+    createTime: 1001923356281,
+    idCard: '758655202011211438'
+  },
+  {
+    id: 6,
+    name: '吴志泽',
+    avatar: 'http://dummyimage.com/296x474.png/0a7b3f/157f48',
+    balance: 97033,
+    email: 'Trinity.Ferry36@gmail.com',
+    createTime: 1630998939790,
+    idCard: '379549201801184461'
+  },
+  {
+    id: 7,
+    name: '任博涛',
+    avatar: 'http://dummyimage.com/124x332.png/6d3707/06465b',
+    balance: 6164,
+    email: 'Rolando21@hotmail.com',
+    createTime: 1018776066989,
+    idCard: '512732202110107027'
+  },
+  {
+    id: 7,
+    name: '刘梓晨',
+    avatar: 'http://dummyimage.com/266x355.png/241252/74201c',
+    balance: 33858,
+    email: 'Breana_Grady43@hotmail.com',
+    createTime: 1597985868737,
+    idCard: '897758199602062256'
+  },
+  {
+    id: 8,
+    name: '黎懿轩',
+    avatar: 'http://dummyimage.com/343x393.png/16522f/2c0d5e',
+    balance: 59867,
+    email: 'Kendall75@yahoo.com',
+    createTime: 1129489050616,
+    idCard: '274825201901276320'
+  },
+  {
+    id: 8,
+    name: '邹明轩',
+    avatar: 'http://dummyimage.com/362x323.png/1f4b33/08110b',
+    balance: 52044,
+    email: 'Guadalupe.Reichel84@gmail.com',
+    createTime: 1446835310895,
+    idCard: '336559199301127985'
   }
 ];
 
