@@ -56,7 +56,7 @@ const Users = () => {
   };
   return (
     <Flex h={'100%'} position={'relative'}>
-      <Box w={['100%', '250px']}>
+      <Box w={['500px', '400px']}>
         <CompanyList companyId={companyId} changeCompany={changeCompany} />
       </Box>
       <Flex h={'100%'} flex={1} position={'relative'} direction={'column'}>

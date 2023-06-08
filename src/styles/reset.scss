@@ -97,3 +97,9 @@ textarea::placeholder {
 #nprogress .bar {
   background: '#85b1ff' !important; //自定义颜色
 }
+
+.css-1e010e2 tr:nth-of-type(odd) td {
+  background-color: #dee0e3 !important;
+  border-bottom-width: 1px;
+  border-color: #dee0e3 !important;
+}

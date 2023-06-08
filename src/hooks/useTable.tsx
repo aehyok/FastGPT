@@ -110,7 +110,7 @@ const SearchableTable = ({ data, columns, operatingButton, onConfirm }) => {
         </Box>
       </Flex>
       {filteredData.length > 0 ? (
-        <Table variant="striped" colorScheme="teal">
+        <Table variant="striped">
           <Thead>
             <Tr>
               {columns.map((column) => (
