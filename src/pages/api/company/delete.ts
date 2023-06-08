@@ -1,27 +1,21 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { jsonRes } from '@/service/response';
-import { connectToDatabase, getPagedList, Company } from '@/service/mongo';
+import { connectToDatabase, Company } from '@/service/mongo';
 import { authToken } from '@/service/utils/auth';
 
-/* 获取企业列表 */
+/* 获取历史记录 */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { limit = 10, page = 1 } = req.body as {
-      limit?: number;
-      page?: number;
-    };
+    const { _id } = req.body;
     const userId = await authToken(req);
 
     await connectToDatabase();
 
-    const pageModel = await getPagedList(Company, {}, limit, page);
-
-    console.log(pageModel, 'data-------');
-    jsonRes(res, {
-      data: {
-        ...pageModel
-      }
+    const response = await Company.findOneAndRemove({
+      _id
     });
+    console.log(response, 'response');
+    jsonRes(res);
   } catch (err) {
     jsonRes(res, {
       code: 500,

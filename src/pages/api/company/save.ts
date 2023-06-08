@@ -4,59 +4,31 @@ import { ChatItemType } from '@/types/chat';
 import { connectToDatabase, Chat } from '@/service/mongo';
 import { authModel } from '@/service/utils/auth';
 import { authToken } from '@/service/utils/auth';
-import mongoose from 'mongoose';
+import mongoose, { isObjectIdOrHexString } from 'mongoose';
+import { CompanyModelSchema } from '@/types/mongoSchema';
+import { Company } from '@/service/mongo';
 
 /* 聊天内容存存储 */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { chatId, modelId, prompts, newChatId } = req.body as {
-      newChatId: '' | string;
-      chatId: '' | string;
-      modelId: string;
-      prompts: [ChatItemType, ChatItemType];
-    };
-
-    if (!prompts) {
-      throw new Error('缺少参数');
-    }
-
+    const company: CompanyModelSchema = req.body;
     const userId = await authToken(req);
-
-    await connectToDatabase();
-
-    const content = prompts.map((item) => ({
-      _id: new mongoose.Types.ObjectId(item._id),
-      obj: item.obj,
-      value: item.value,
-      systemPrompt: item.systemPrompt
-    }));
-
-    await authModel({ modelId, userId, authOwner: false });
-
-    // 没有 chatId, 创建一个对话
-    if (!chatId) {
-      const { _id } = await Chat.create({
-        _id: newChatId ? new mongoose.Types.ObjectId(newChatId) : undefined,
-        userId,
-        modelId,
-        content,
-        title: content[0].value.slice(0, 20),
-        latestChat: content[1].value
+    console.log(company, company._id, 'company');
+    if (company._id) {
+      const filter = { _id: new mongoose.Types.ObjectId(company._id) };
+      const response = await Company.findByIdAndUpdate(filter, {
+        ...company,
+        _id: new mongoose.Types.ObjectId(company._id)
       });
       return jsonRes(res, {
-        data: _id
+        data: company._id
       });
     } else {
       // 已经有记录，追加入库
-      await Chat.findByIdAndUpdate(chatId, {
-        $push: {
-          content: {
-            $each: content
-          }
-        },
-        title: content[0].value.slice(0, 20),
-        latestChat: content[1].value,
-        updateTime: new Date()
+      await Company.create({
+        ...company,
+        _id: undefined,
+        createBy: new mongoose.Types.ObjectId(userId)
       });
     }
     jsonRes(res);
