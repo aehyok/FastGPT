@@ -53,15 +53,43 @@ export const operatingButton = [
   {
     type: 'end',
     name: '禁用',
-    onClickType: 'edit',
+    onClickType: 'enable',
+    dialogTitle: (item) => {
+      switch (item.status) {
+        case 1:
+          return `是否禁用${item.shortName}`;
+        case 0:
+          return `是否启用${item.shortName}`;
+        default:
+          return '';
+      }
+    },
     render: (item) => {
-      // console.log(item, '兼顾哦多');
-      return '启用';
+      switch (item.status) {
+        case 1:
+          return `禁用`;
+        case 0:
+          return `启用`;
+        default:
+          return '';
+      }
+    },
+    dialogDescription: (item) => {
+      switch (item.status) {
+        case 1:
+          return `提示：禁用后该企业账号不能使用`;
+        case 0:
+          return `提示：启用该企业账号`;
+        default:
+          return '';
+      }
     }
   },
   {
     type: 'end',
     name: '移除',
-    onClickType: 'edit'
+    onClickType: 'remove',
+    dialogTitle: '移除',
+    dialogDescription: '是否移除该企业用户'
   }
 ];

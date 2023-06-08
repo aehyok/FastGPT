@@ -11,6 +11,7 @@ export const data = [
     address: '福建省龙岩市连城县石埇镇',
     phone: '15303449136',
     price: 49426.11,
+    status: 1,
     phoneNumber: '15733111298',
     city: '吉林省四平市伊通满族自治县路北街道',
     workAt: 'DuBuque - Schmitt',
@@ -30,6 +31,7 @@ export const data = [
     address: '吉林省白山市市辖区羊角乡',
     phone: '15215163823',
     price: 14856.35,
+    status: 1,
     phoneNumber: '15825581649',
     city: '青海省海北藏族自治州祁连县施家梁镇',
     workAt: 'Hudson Group',
@@ -49,6 +51,7 @@ export const data = [
     address: '安徽省宣城市市辖区金坪乡',
     phone: '19517279870',
     price: 93077.13,
+    status: 1,
     phoneNumber: '13701518409',
     city: '湖南省邵阳市北塔区原平农场',
     workAt: 'Feeney, Kemmer and Fadel',
@@ -68,6 +71,7 @@ export const data = [
     address: '天津市市辖区蓟州区渚河路街道',
     phone: '14937426805',
     price: 52371.44,
+    status: 1,
     phoneNumber: '14883194122',
     city: '甘肃省兰州市永登县斋堂镇',
     workAt: 'Weber Group',
@@ -87,6 +91,7 @@ export const data = [
     address: '浙江省宁波市江北区罗平农场',
     phone: '17885636272',
     price: 77867.52,
+    status: 1,
     phoneNumber: '18130083802',
     city: '浙江省金华市兰溪市孙家庄镇',
     workAt: 'Hirthe Inc',
@@ -106,6 +111,7 @@ export const data = [
     address: '上海市市辖区金山区大业镇',
     phone: '19248290882',
     price: 37648.26,
+    status: 1,
     phoneNumber: '16636644826',
     city: '海南省省直辖县级行政区划琼中黎族苗族自治县县底镇',
     workAt: 'Ryan, Schoen and Parisian',
@@ -125,6 +131,7 @@ export const data = [
     address: '吉林省延边朝鲜族自治州汪清县城子街道',
     phone: '17671528970',
     price: 43798.13,
+    status: 1,
     phoneNumber: '19252644515',
     city: '辽宁省葫芦岛市兴城市大仓盖镇',
     workAt: 'Altenwerth - Gleason',
@@ -144,6 +151,7 @@ export const data = [
     address: '宁夏回族自治区银川市灵武市大丰堆镇',
     phone: '15570508170',
     price: 99130.62,
+    status: 1,
     phoneNumber: '15160770184',
     city: '浙江省绍兴市诸暨市莲花滩乡',
     workAt: 'Bins, Hane and Pollich',
@@ -163,6 +171,7 @@ export const data = [
     address: '广东省清远市清新区临邛街道',
     phone: '15324344072',
     price: 49085.1,
+    status: 1,
     phoneNumber: '16790593791',
     city: '甘肃省甘南藏族自治州玛曲县西寨乡',
     workAt: 'Wilderman, Friesen and Cronin',
@@ -182,6 +191,7 @@ export const data = [
     address: '河南省平顶山市郏县格里坪镇',
     phone: '14741274933',
     price: 69765.55,
+    status: 1,
     phoneNumber: '13259328956',
     city: '重庆市县秀山土家族苗族自治县魏村镇',
     workAt: 'Swaniawski, Mohr and Luettgen',
@@ -200,6 +210,7 @@ export const data = [
     intro: '杨靖琪',
     address: '湖南省株洲市芦淞区新福镇',
     phone: '19525726033',
+    status: 1,
     phoneNumber: '19033740138',
     city: '西藏自治区日喀则市萨嘎县西南街道',
     workAt: 'Langworth - Trantow',
@@ -219,6 +230,7 @@ export const data = [
     address: '山东省菏泽市牡丹区七叉镇',
     phone: '16565525409',
     price: 299.25,
+    status: 1,
     phoneNumber: '16717862314',
     city: '新疆维吾尔自治区和田地区策勒县大洞河乡',
     workAt: 'Waters, Dare and Schinner',
@@ -238,6 +250,7 @@ export const data = [
     address: '重庆市市辖区九龙坡区西营镇',
     phone: '15202341360',
     price: 24578.28,
+    status: 1,
     phoneNumber: '16558710377',
     city: '海南省三沙市中沙群岛的岛礁及其海域畖底镇',
     workAt: 'Grant LLC',
@@ -251,14 +264,15 @@ export const data = [
 
 export function useOperationBtnHook({ onOpen }) {
   const identificationFun = (type: string) => {
-    switch (type) {
-      case 'add':
-        onOpen();
-        return '';
-      case 'edit':
-        onOpen();
-        return onOpen;
-    }
+    onOpen();
+    // switch (type) {
+    //   case 'add':
+    //     onOpen();
+    //     return '';
+    //   case 'edit':
+    //     onOpen();
+    //     return onOpen;
+    // }
   };
 
   return {

@@ -23,6 +23,7 @@ const AlertDialogForm = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const cancelRef = React.useRef();
+  console.log(typeof title, 'description', title);
 
   // const handleConfirm = async () => {
   //   setIsLoading(true);
@@ -31,7 +32,7 @@ const AlertDialogForm = ({
   //   // onClose();
   // };
   const onSubmit = (val) => {
-    console.log('sumbit1', val);
+    return '123';
   };
   // const fields = [
   //   {
@@ -46,27 +47,49 @@ const AlertDialogForm = ({
       <AlertDialogOverlay>
         <AlertDialogContent>
           <AlertDialogHeader fontSize="lg" fontWeight="bold">
-            {title}
+            {typeof title === 'function' ? title(formValues) : title}
           </AlertDialogHeader>
 
           <AlertDialogBody>
-            <Form
+            {fields?.length > 0 ? (
+              <Form
+                fields={fields}
+                onSubmit={onConfirm}
+                formData={formValues}
+                type={onClickType}
+                onClose={onClose}
+              />
+            ) : (
+              <div>{typeof description === 'function' ? description(formValues) : description}</div>
+            )}
+            {/* <Form
               fields={fields}
               onSubmit={onConfirm}
               formData={formValues}
               type={onClickType}
               onClose={onClose}
-            />
+            /> */}
           </AlertDialogBody>
-
-          {/* <AlertDialogFooter> */}
-          {/* <Button ref={cancelRef} onClick={onClose}>
-              {cancelButtonText}
-            </Button>
-            <Button colorScheme="red" ml={3} isLoading={isLoading} onClick={handleConfirm}>
-              {confirmButtonText}
-            </Button> */}
-          {/* </AlertDialogFooter> */}
+          {fields?.length > 0 ? (
+            ''
+          ) : (
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                {cancelButtonText}
+              </Button>
+              <Button
+                colorScheme="red"
+                ml={3}
+                isLoading={isLoading}
+                onClick={() => {
+                  onConfirm(formValues, onClickType);
+                  onClose();
+                }}
+              >
+                {confirmButtonText}
+              </Button>
+            </AlertDialogFooter>
+          )}
         </AlertDialogContent>
       </AlertDialogOverlay>
     </AlertDialog>

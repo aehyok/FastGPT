@@ -9,7 +9,7 @@ import { operatingButton } from './config';
 const Company = () => {
   const [tableData, setTableData] = useState([]);
   const onConfirm = async (val, type) => {
-    console.log(val, '家啊大家啊设计的');
+    console.log(val, type, '家啊大家啊设计的');
     if (type === 'add') {
       const newVal = val;
       newVal.id = tableData[tableData.length - 1].id + 1;
@@ -19,6 +19,19 @@ const Company = () => {
       const realceData = tableData.findIndex((res) => res.id === val.id);
       tableData.splice(realceData, 1, val);
       await localStorage.setItem('companyTable', JSON.stringify(tableData));
+    } else if (type === 'enable') {
+      tableData.forEach((res) => {
+        if (res.id === val.id) {
+          console.log('asd');
+          res.status = res.status === 0 ? 1 : 0;
+        }
+      });
+      await localStorage.setItem('companyTable', JSON.stringify(tableData));
+    } else if (type === 'remove') {
+      const newData = tableData.filter((res) => res.id !== val.id);
+      console.log(newData, 'newData');
+      await setTableData(newData);
+      await localStorage.setItem('companyTable', JSON.stringify(newData));
     }
   };
   useEffect(() => {

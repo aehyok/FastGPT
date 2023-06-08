@@ -11,8 +11,7 @@ import {
   Button,
   VStack,
   HStack,
-  Box,
-  AlertDialogFooter
+  Box
 } from '@chakra-ui/react';
 
 const Form = ({ fields, onSubmit, formData, type, onClose }) => {

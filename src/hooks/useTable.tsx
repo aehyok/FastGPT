@@ -54,6 +54,8 @@ const SearchableTable = ({ data, columns, operatingButton, onConfirm }) => {
       description: dialogDescription,
       onClickType: onClickType
     };
+    console.log(formData, 'formData');
+
     setFormConfig(formData);
   };
 
