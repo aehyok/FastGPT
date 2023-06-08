@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { jsonRes } from '@/service/response';
-import { connectToDatabase, Chat, Company } from '@/service/mongo';
+import { connectToDatabase, getPagedList, Company } from '@/service/mongo';
 import { authToken } from '@/service/utils/auth';
+import { Model } from 'mongoose';
 
 /* 获取企业列表 */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -13,20 +14,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const userId = await authToken(req);
 
     await connectToDatabase();
-    const total = await Company.countDocuments();
-    const pages = Math.ceil(total / limit);
-    const docs = await Company.find({})
-      .sort({ createAt: -1 })
-      .skip((page - 1) * limit)
-      .limit(limit);
 
-    console.log(docs, 'data-------');
+    const pageModel = await getPagedList(Company, {}, limit, page);
+
+    console.log(pageModel, 'data-------');
     jsonRes(res, {
       data: {
-        docs,
-        total,
-        page,
-        pages
+        ...pageModel
       }
     });
   } catch (err) {

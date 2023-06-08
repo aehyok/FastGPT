@@ -65,13 +65,13 @@ export interface RoleModelSchema {
 }
 export interface CompanyModelSchema {
   _id: string;
-  companyShortName: string;
-  companyName: string;
-  companyLogo: string;
-  companyIntro: string;
-  companyAddress: string;
-  companyEmail: string;
-  companyPhone: string;
+  shortName: string;
+  name: string;
+  logo: string;
+  intro: string;
+  address: string;
+  email: string;
+  phone: string;
   createAt: Date;
   createBy: string;
 }

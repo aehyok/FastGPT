@@ -41,6 +41,27 @@ export async function connectToDatabase(): Promise<void> {
   }
 }
 
+export async function getPagedList(
+  model: mongoose.Model<any>,
+  query: any,
+  pageSize: number,
+  pageNumber: number
+) {
+  const total = await model.countDocuments(query);
+  const pages = Math.ceil(total / pageSize);
+  const docs = await model
+    .find(query)
+    .skip((pageNumber - 1) * pageSize)
+    .limit(pageSize);
+  console.log('getPagedList', docs);
+  return {
+    docs,
+    page: pageNumber,
+    pages,
+    total
+  };
+}
+
 export * from './models/authCode';
 export * from './models/chat';
 export * from './models/model';
