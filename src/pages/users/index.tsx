@@ -64,7 +64,7 @@ const Users = () => {
         <Box position={'relative'} m={5} display="flex" justifyContent={'flex-start'}>
           {/* <CompanySearch /> */}
           {/* {modelId && <ModelDetail modelId={modelId} isPc={isPc} />} */}
-          {/* <Heading>企业管理</Heading> */}
+          <Heading>用户管理</Heading>
         </Box>
 
         <Box flex={1} h={'100%'} position={'relative'} m={5}>
