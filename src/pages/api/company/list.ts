@@ -6,18 +6,28 @@ import { authToken } from '@/service/utils/auth';
 /* 获取企业列表 */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    // const { name } = req.body as {
-    //   name: string;
-    // };
+    const { limit = 10, page = 1 } = req.body as {
+      limit?: number;
+      page?: number;
+    };
     const userId = await authToken(req);
 
     await connectToDatabase();
+    const total = await Company.countDocuments();
+    const pages = Math.ceil(total / limit);
+    const docs = await Company.find({})
+      .sort({ createAt: -1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
 
-    const data = await Company.find({}).sort({ createAt: -1 }).limit(20);
-
-    console.log(data, 'data-------');
+    console.log(docs, 'data-------');
     jsonRes(res, {
-      data
+      data: {
+        docs,
+        total,
+        page,
+        pages
+      }
     });
   } catch (err) {
     jsonRes(res, {
