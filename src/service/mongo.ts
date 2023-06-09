@@ -21,6 +21,7 @@ export async function connectToDatabase(): Promise<void> {
       minPoolSize: 1,
       maxConnecting: 5
     });
+    mongoose.set('debug', true);
     console.log('mongo connected');
   } catch (error) {
     console.log('error->', 'mongo connect error');
@@ -41,22 +42,32 @@ export async function connectToDatabase(): Promise<void> {
   }
 }
 
+/**
+ *
+ * @param model mongodb模型
+ * @param query 查询对象
+ * @param pageSize
+ * @param pageNumber
+ * @returns
+ */
 export async function getPagedList(
   model: mongoose.Model<any>,
   query: any,
   pageSize: number,
-  pageNumber: number
+  pageNum: number
 ) {
+  console.log(model.schema, 'model');
   const total = await model.countDocuments(query);
   const pages = Math.ceil(total / pageSize);
+  console.log(pageNum, pageSize, total, pages);
   const docs = await model
     .find(query)
-    .skip((pageNumber - 1) * pageSize)
+    .skip((pageNum - 1) * pageSize)
     .limit(pageSize);
   console.log('getPagedList', docs);
   return {
     docs,
-    page: pageNumber,
+    page: pageNum,
     pages,
     total
   };
