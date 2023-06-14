@@ -51,8 +51,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const modelConstantsData = ChatModelMap[model.chat.chatModel];
 
     // 读取对话内容
-    // const prompts = [...content, prompt];
-    const prompts = [prompt];
+    const prompts = [...content, prompt];
+    // const prompts = [prompt];
 
     console.log(model.chat.useKb, 'model.chat.useKb');
     // 使用了资料库搜索
