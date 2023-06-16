@@ -1,4 +1,4 @@
-export const COLUMNS = ['name', 'companyName', 'logo', 'intro', 'address', 'email', 'phone'];
+export const COLUMNS = ['name', 'shortName', 'logo', 'intro', 'address', 'email', 'phone'];
 
 export const data = [
   {

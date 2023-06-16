@@ -6,6 +6,11 @@ type listParameterType = {
 };
 
 /**
- * 根据 ID 更新模型
+ * 企业列表
  */
 export const getCompanyList = (data: listParameterType) => POST(`/company/list`, data);
+
+/**
+ * 添加编辑
+ */
+export const saveCompanyData = (data: { [key: string]: any }) => POST(`/company/save`, data);

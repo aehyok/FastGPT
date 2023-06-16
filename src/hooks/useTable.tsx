@@ -18,19 +18,58 @@ import {
 import { SearchIcon } from '@chakra-ui/icons';
 import AlertDialogForm from './useAlertDialog';
 import { useOperationBtnHook } from '@/constants/company';
-const SearchableTable = ({ data, columns, operatingButton, onConfirm }) => {
+import { usePagination } from './useNewPagination';
+import type { RequestType, RequsetListType } from '@/types/request';
+import type { OperatingButtonType } from '../types/index';
+
+import { getCompanyList } from '@/api/company';
+import { UseMutateFunction } from '@tanstack/react-query/build/lib/types';
+
+const SearchableTable = ({
+  columns,
+  operatingButton,
+  onConfirm
+}: {
+  columns: string[];
+  operatingButton: Array<OperatingButtonType>;
+  onConfirm: Function;
+}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [formConfig, setFormConfig] = useState({});
   const [formValues, setFormValues] = useState({});
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const {
+    page,
+    limit,
+    total,
+    data,
+    isLoading,
+    Pagination,
+    getData: mutate
+  }: {
+    page: number;
+    limit: number;
+    total: number;
+    data: any[];
+    isLoading: boolean;
+    Pagination: () => JSX.Element;
+    getData: UseMutateFunction<void, unknown, number | undefined, unknown>;
+  } = usePagination({
+    api: getCompanyList,
+    limit: 10,
+    params: {}
+  });
+
   const cancelRef = React.useRef();
   const { identificationFun } = useOperationBtnHook({ onOpen });
-  const filteredData = data.filter((item) =>
-    Object.values(item).some((value) =>
-      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
+
+  // const filteredData = list?.docs?.filter((item) =>
+  //   Object.values(item).some((value) =>
+  //     value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+  //   )
+  // );
 
   // const onConfirm = () => {
   //   console.log('asdad');
@@ -59,6 +98,11 @@ const SearchableTable = ({ data, columns, operatingButton, onConfirm }) => {
     setFormConfig(formData);
   };
 
+  const onConfirmFun = async (val, type) => {
+    const isSucces = await onConfirm(val, type);
+    if (isSucces) await mutate(1);
+  };
+
   return (
     <Box>
       <AlertDialogForm
@@ -69,7 +113,7 @@ const SearchableTable = ({ data, columns, operatingButton, onConfirm }) => {
         onClose={onClose}
         description={formConfig.description}
         title={formConfig.title}
-        onConfirm={onConfirm}
+        onConfirm={onConfirmFun}
       />
 
       <Flex w={'100%'} display="flex" justifyContent={'space-between'}>
@@ -109,7 +153,7 @@ const SearchableTable = ({ data, columns, operatingButton, onConfirm }) => {
           </InputGroup>
         </Box>
       </Flex>
-      {filteredData.length > 0 ? (
+      {data?.length > 0 ? (
         <Table variant="striped">
           <Thead>
             <Tr>
@@ -120,7 +164,7 @@ const SearchableTable = ({ data, columns, operatingButton, onConfirm }) => {
             </Tr>
           </Thead>
           <Tbody>
-            {filteredData.map((item, index) => (
+            {data?.map((item, index) => (
               <Tr key={index}>
                 {Object.values(columns).map((value, index) => (
                   <Td key={index}>{item[value]}</Td>
@@ -151,6 +195,10 @@ const SearchableTable = ({ data, columns, operatingButton, onConfirm }) => {
       ) : (
         <Text>No results found</Text>
       )}
+
+      <Box>
+        <Pagination />
+      </Box>
     </Box>
   );
 };
