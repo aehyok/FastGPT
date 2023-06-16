@@ -105,7 +105,7 @@ export const ModelDataStatusMap: Record<`${ModelDataStatusEnum}`, string> = {
   waiting: '训练中'
 };
 
-/* 知识库搜索时的配置 */
+/* 资料库搜索时的配置 */
 // 搜索方式
 export enum ModelVectorSearchModeEnum {
   hightSimilarity = 'hightSimilarity', // 高相似度+禁止回复

@@ -37,7 +37,7 @@ type GetModelDataListProps = RequestPaging & {
   searchText: string;
 };
 /**
- * 获取模型的知识库数据
+ * 获取模型的资料库数据
  */
 export const getModelDataList = (props: GetModelDataListProps) =>
   GET(`/model/data/getModelData?${Obj2Query(props)}`);
