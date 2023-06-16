@@ -26,4 +26,33 @@ export type PagingData<T> = {
   total;
 };
 
+interface RequsetListType {
+  docs: T[];
+  page: number;
+  pages: number;
+  total: number;
+}
+
+export type NewPagingData<T> = {
+  code;
+  data: RequsetListType;
+  statusText;
+};
+
+interface AddEditformType {
+  type: string;
+  name: string;
+  label: string;
+}
+
+export type OperatingButtonType = {
+  type: string;
+  name: string;
+  onClickType: string;
+  fields?: AddEditformType[];
+  dialogTitle?: string | ((...args: any[]) => string);
+  dialogDescription?: string | ((...args: any[]) => string);
+  render?: (...args: any[]) => string;
+};
+
 export type RequestPaging = { pageNum: number; pageSize: number; [key]: any };
