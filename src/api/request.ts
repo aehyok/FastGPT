@@ -39,7 +39,7 @@ function checkRes(data: ResponseDataType) {
   } else if (data.code < 200 || data.code >= 400) {
     return Promise.reject(data);
   }
-  return data.data;
+  return data;
 }
 
 /**
