@@ -124,7 +124,7 @@ export const ModelVectorSearchModeMap: Record<
     similarity: 0.2
   },
   [ModelVectorSearchModeEnum.noContext]: {
-    text: '高相似度，无匹配时直接回复',
+    text: '高相似度，无匹配时智能回复',
     similarity: 0.2
   },
   [ModelVectorSearchModeEnum.lowSimilarity]: {

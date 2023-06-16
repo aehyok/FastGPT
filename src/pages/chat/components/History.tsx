@@ -234,9 +234,9 @@ const PcSliderBar = ({
               >
                 删除记录
               </MenuItem>
-              <MenuItem onClick={() => onclickExportChat('html')}>导出HTML格式</MenuItem>
+              {/* <MenuItem onClick={() => onclickExportChat('html')}>导出HTML格式</MenuItem>
               <MenuItem onClick={() => onclickExportChat('pdf')}>导出PDF格式</MenuItem>
-              <MenuItem onClick={() => onclickExportChat('md')}>导出Markdown格式</MenuItem>
+              <MenuItem onClick={() => onclickExportChat('md')}>导出Markdown格式</MenuItem> */}
             </MenuList>
           </Menu>
         </Box>
