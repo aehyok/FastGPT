@@ -97,7 +97,7 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
             {!!errors.password && errors.password.message}
           </FormErrorMessage>
         </FormControl>
-        {/* <Flex align={'center'} justifyContent={'space-between'} mt={6} color={'myBlue.600'}>
+        <Flex align={'center'} justifyContent={'space-between'} mt={6} color={'myBlue.600'}>
           <Box
             cursor={'pointer'}
             _hover={{ textDecoration: 'underline' }}
@@ -114,7 +114,7 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
           >
             注册账号
           </Box>
-        </Flex> */}
+        </Flex>
         <Button
           type="submit"
           mt={8}
