@@ -69,8 +69,8 @@ export const useUserStore = create<State>()(
           if (get().myModels.length > 0 && !init) return null;
           const res = await getMyModels();
           set((state) => {
-            state.myModels = res.myModels;
-            state.myCollectionModels = res.myCollectionModels;
+            state.myModels = res.data.myModels;
+            state.myCollectionModels = res.data.myCollectionModels;
           });
           return null;
         },
