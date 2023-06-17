@@ -28,6 +28,18 @@ const Navbar = () => {
         icon: 'model',
         link: `/model?modelId=${lastModelId}`,
         activeLink: ['/model']
+      },
+      {
+        label: '翻译',
+        icon: 'translate',
+        link: `/translate?modelId=${lastModelId}`,
+        activeLink: ['/translate']
+      },
+      {
+        label: '总结',
+        icon: 'wx',
+        link: `/summarize?modelId=${lastModelId}`,
+        activeLink: ['/summarize']
       }
       // {
       //   label: '共享',
