@@ -7,7 +7,7 @@ import { PassThrough } from 'stream';
 import { ChatModelMap, OpenAiChatEnum } from '@/constants/model';
 import { resStreamResponse } from '@/service/utils/chat';
 
-/* 发送提示词 */
+/* 翻译和总结共用的api 预定义的提示词由前端定义，后期可以做一个系统设置参数列表 */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   let step = 0; // step=1时，表示开始了流响应
   const stream = new PassThrough();
