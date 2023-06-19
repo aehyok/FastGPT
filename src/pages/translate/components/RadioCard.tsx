@@ -1,35 +1,51 @@
-import { useRadio, getInputProps } from '@chakra-ui/react';
-import { Box } from '@chakra-ui/react';
-export function RadioCard(props) {
-  console.log(props, 'props');
+import React, { useState } from 'react';
+import { Stack } from '@chakra-ui/react';
+import { Radio, RadioGroup } from '@chakra-ui/react';
+import { Box, chakra } from '@chakra-ui/react';
+const RadioCard = ({
+  children,
+  changeLanguage
+}: {
+  children: never[];
+  changeLanguage: (val: string) => Promise<void>;
+}) => {
+  const [value, setValue] = useState('');
+  const language = [
+    {
+      text: '中文'
+    },
+    {
+      text: '英文'
+    },
+    {
+      text: '法文'
+    },
+    {
+      text: '意大利文'
+    },
+    {
+      text: '西班牙文'
+    }
+  ];
 
-  const { getInputProps, getRadioProps } = useRadio(props);
+  const setValueFun = async (val: string) => {
+    console.log(val, '不糊i更改');
 
-  const input = getInputProps();
-  const checkbox = getRadioProps();
-
+    await setValue(val);
+    await changeLanguage(val);
+  };
   return (
-    <Box as="label">
-      <input {...input} />
-      <Box
-        {...checkbox}
-        cursor="pointer"
-        borderWidth="1px"
-        borderRadius="md"
-        boxShadow="md"
-        _checked={{
-          bg: 'teal.600',
-          color: 'white',
-          borderColor: 'teal.600'
-        }}
-        _focus={{
-          boxShadow: 'outline'
-        }}
-        px={5}
-        py={3}
-      >
-        {props.children}
-      </Box>
-    </Box>
+    <RadioGroup onChange={setValueFun} value={value}>
+      <Stack direction="row">
+        {language?.length > 0
+          ? language.map((item, index) => (
+              <Radio value={item.text} key={item.text}>
+                {item.text}
+              </Radio>
+            ))
+          : ''}
+      </Stack>
+    </RadioGroup>
   );
-}
+};
+export default RadioCard;

@@ -12,6 +12,8 @@ export enum NavbarTypeEnum {
 
 const Navbar = () => {
   const router = useRouter();
+  // console.log(router, "router");
+
   const { userInfo, lastModelId } = useUserStore();
   const { lastChatModelId, lastChatId } = useChatStore();
   const navbarList = useMemo(
@@ -32,7 +34,7 @@ const Navbar = () => {
       {
         label: '翻译',
         icon: 'translate',
-        link: `/translate?modelId=${lastModelId}`,
+        link: `/translate?modelId=6476f3a96562c5fa0cba90dc&chatId=648c5e8ed95c58ddd045ad7e`,
         activeLink: ['/translate']
       },
       {
@@ -113,6 +115,8 @@ const Navbar = () => {
               alignItems={'center'}
               justifyContent={'center'}
               onClick={() => {
+                console.log(item.link === router.asPath, item.link);
+
                 if (item.link === router.asPath) return;
                 router.push(item.link);
               }}

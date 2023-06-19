@@ -30,7 +30,8 @@ import {
   Card,
   Tooltip,
   useOutsideClick,
-  useTheme
+  useTheme,
+  HStack
 } from '@chakra-ui/react';
 import { useToast } from '@/hooks/useToast';
 import { useScreen } from '@/hooks/useScreen';
@@ -50,7 +51,6 @@ import { fileDownload } from '@/utils/file';
 import { htmlTemplate } from '@/constants/common';
 import { useUserStore } from '@/store/user';
 import Loading from '@/components/Loading';
-
 const PhoneSliderBar = dynamic(() => import('./components/PhoneSliderBar'), {
   loading: () => <Loading fixed={false} />,
   ssr: false
@@ -63,12 +63,16 @@ const Empty = dynamic(() => import('./components/Empty'), {
   loading: () => <Loading fixed={false} />,
   ssr: false
 });
+const RadioCard = dynamic(() => import('./components/RadioCard'), {
+  loading: () => <Loading fixed={false} />,
+  ssr: false
+});
 
 import styles from './index.module.scss';
 
 const textareaMinH = '22px';
 
-const Chat = ({
+const Chatsss = ({
   modelId,
   chatId,
   isPcDevice
@@ -98,6 +102,8 @@ const Chat = ({
     top: number;
     message: ChatSiteItemType;
   }>();
+  // 翻译的参数，要保存
+  const [languag, setLanguag] = useState('');
   const [foldSliderBar, setFoldSlideBar] = useState(false);
 
   const {
@@ -200,6 +206,8 @@ const Chat = ({
           modelId
         },
         onMessage: (text: string) => {
+          console.log(text, 'taxt');
+
           setChatData((state) => ({
             ...state,
             history: state.history.map((item, index) => {
@@ -531,7 +539,7 @@ const Chat = ({
         // 空 modelId 请求, 重定向到新的 model 聊天
         if (res.modelId !== modelId) {
           setForbidLoadChatData(true);
-          router.replace(`/chat?modelId=${res.modelId}`);
+          // router.replace(`/chat?modelId=${res.modelId}`);
         }
       } catch (e: any) {
         // reset all chat tore
@@ -539,7 +547,7 @@ const Chat = ({
         setLastChatId('');
         setChatData();
         loadHistory({ pageNum: 1, init: true });
-        router.replace('/chat');
+        // router.replace('/chat');
       }
       setIsLoading(false);
       return null;
@@ -554,6 +562,13 @@ const Chat = ({
       setLastChatId,
       setLastChatModelId
     ]
+  );
+  const changeLanguage = useCallback(
+    async (val: string) => {
+      await setLanguag(val);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [languag]
   );
   // 初始化聊天框
   const { isLoading } = useQuery(['init', modelId, chatId], () => {
@@ -602,7 +617,11 @@ const Chat = ({
         {AiDetail && chatData.model.canUse && history.obj === 'AI' && (
           <MenuItem
             borderBottom={theme.borders.base}
-            onClick={() => router.push(`/model?modelId=${chatData.modelId}`)}
+            onClick={() => {
+              console.log('asdasdsa');
+
+              router.push(`/model?modelId=${chatData.modelId}`);
+            }}
           >
             AI助手详情
           </MenuItem>
@@ -782,7 +801,11 @@ const Chat = ({
                             order: 1,
                             mr: ['6px', 2],
                             cursor: 'pointer',
-                            onClick: () => isPc && router.push(`/model?modelId=${chatData.modelId}`)
+                            onClick: () => {
+                              console.log('什么防御');
+
+                              isPc && router.push(`/model?modelId=${chatData.modelId}`);
+                            }
                           }
                         : {
                             order: 3,
@@ -871,6 +894,11 @@ const Chat = ({
                 borderRadius={['none', 'md']}
                 backgroundColor={useColorModeValue('white', 'gray.700')}
               >
+                {/*选择翻译为*/}
+                <HStack>
+                  <span>翻译为</span>
+                  <RadioCard changeLanguage={changeLanguage}></RadioCard>
+                </HStack>
                 {/* 输入框 */}
                 <Textarea
                   ref={TextareaDom}
@@ -1000,7 +1028,7 @@ const Chat = ({
   );
 };
 
-Chat.getInitialProps = ({ query, req }: any) => {
+Chatsss.getInitialProps = ({ query, req }: any) => {
   return {
     modelId: query?.modelId || '',
     chatId: query?.chatId || '',
@@ -1008,4 +1036,4 @@ Chat.getInitialProps = ({ query, req }: any) => {
   };
 };
 
-export default Chat;
+export default Chatsss;
