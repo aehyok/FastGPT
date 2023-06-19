@@ -26,7 +26,7 @@ const Navbar = () => {
       },
 
       {
-        label: '客服知识库',
+        label: '客服资料库',
         icon: 'model',
         link: `/model?modelId=${lastModelId}`,
         activeLink: ['/model']

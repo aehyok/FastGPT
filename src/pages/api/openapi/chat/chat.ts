@@ -69,7 +69,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const modelConstantsData = ChatModelMap[model.chat.chatModel];
 
-    // 使用了知识库搜索
+    // 使用了资料库搜索
     if (model.chat.useKb) {
       const similarity = ModelVectorSearchModeMap[model.chat.searchMode]?.similarity || 0.22;
 
@@ -86,7 +86,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
       prompts.splice(prompts.length - 1, 0, ...searchPrompts);
     } else {
-      // 没有用知识库搜索，仅用系统提示词
+      // 没有用资料库搜索，仅用系统提示词
       model.chat.systemPrompt &&
         prompts.splice(prompts.length - 1, 0, {
           obj: ChatRoleEnum.System,

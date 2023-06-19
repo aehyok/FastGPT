@@ -79,6 +79,7 @@ export const searchKb = async ({
         .join('\n\n')
     );
   }
+
   const modelConstantsData = ChatModelMap[model.chat.chatModel];
 
   // search three times
@@ -90,6 +91,7 @@ export const searchKb = async ({
   ].filter((item) => item);
   const systemPrompts = await search(searchArr);
 
+  console.log(systemPrompts, 'systemPrompts');
   // filter system prompts.
   const filterRateMap: Record<number, number[]> = {
     1: [1],
@@ -111,7 +113,7 @@ export const searchKb = async ({
       ? [
           {
             obj: ChatRoleEnum.System,
-            value: `上下文是关于"${model.name}"的内容,根据上下文内容回答问题,如果与上下文有关，直接输出上下文中的答案进行回答问题，如果问题与上面的上下文不相关，则先回答不相关三个字，再换行根据您的理解抛开上下文来回答问题即可.`
+            value: `上下文是关于"${model.name}"的内容,根据上下文内容回答问题,如果与上下文有关，直接输出上下文中的答案进行回答问题，如果问题与上面的上下文不相关，或者上下文中没有数据，则先回答不相关三个字，再换行根据您的理解抛开上下文来回答问题即可.`
           }
         ]
       : [
@@ -120,8 +122,8 @@ export const searchKb = async ({
             value: `玩一个问答游戏,规则为:
 1.你完全忘记你已有的知识
 2.你只回答关于"${model.name}"的问题
-3.你只从知识库中选择内容进行回答
-4.如果问题不在知识库中,你会回答:"我不知道。"
+3.你只从资料库中选择内容进行回答
+4.如果问题不在资料库中,你会回答:"我不知道。"
 请务必遵守规则`
           }
         ])
@@ -151,23 +153,30 @@ export const searchKb = async ({
       searchPrompts: [
         {
           obj: ChatRoleEnum.System,
-          value: '对不起，你的问题不在知识库中。'
+          value: '对不起，你的问题不在资料库中。'
         }
       ]
     };
   }
   /* 高相似度+无上下文，不添加额外知识,仅用系统提示词 */
   if (!filterSystemPrompt && model.chat.searchMode === ModelVectorSearchModeEnum.noContext) {
+    console.log('11111111111111111111', model.chat.systemPrompt);
     return {
       code: 200,
       searchPrompts: model.chat.systemPrompt
         ? [
             {
               obj: ChatRoleEnum.System,
-              value: model.chat.systemPrompt
+              value: model.chat.systemPrompt + '\n' + '请记得先回不相关，再换行继续回复。'
             }
           ]
-        : []
+        : [
+            {
+              obj: ChatRoleEnum.System,
+              value:
+                '请记得先回复"对不起，你的问题不在资料库中，下面是AI的智能回复。"这几个字，再换行继续根据你的理解进行回复。'
+            }
+          ]
     };
   }
 
