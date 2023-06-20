@@ -73,10 +73,12 @@ export const useChatStore = create<State>()(
           if (typeof e === 'function') {
             set((state) => {
               state.chatData = e(state.chatData);
-              localStorage.setItem(
-                status,
-                JSON.stringify({ translateList: [...state.chatData.history] })
-              );
+              if (status) {
+                localStorage.setItem(
+                  status,
+                  JSON.stringify({ translateList: [...state.chatData.history] })
+                );
+              }
               // // console.log(state.chatData, "我是ee12");
               // if (status === "translate" ) {
               //   // const getChatData = localStorage.getItem("translate") ?? "";
