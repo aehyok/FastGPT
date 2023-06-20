@@ -34,14 +34,14 @@ const Navbar = () => {
       {
         label: '翻译',
         icon: 'translate',
-        link: `/translate?modelId=6476f3a96562c5fa0cba90dc&chatId=648c5e8ed95c58ddd045ad7e`,
-        activeLink: ['/translate']
+        link: `/translation?type=translate`,
+        activeLink: ['/translation']
       },
       {
         label: '总结',
         icon: 'wx',
-        link: `/summarize?modelId=${lastModelId}`,
-        activeLink: ['/summarize']
+        link: `/summary?type=summary`,
+        activeLink: ['/summary']
       }
       // {
       //   label: '共享',

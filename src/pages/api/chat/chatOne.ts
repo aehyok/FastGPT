@@ -27,6 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { prompt } = req.body as {
       prompt: ChatItemSimpleType;
     };
+    console.log(prompt, 'prompt');
 
     await connectToDatabase();
     let startTime = Date.now();
