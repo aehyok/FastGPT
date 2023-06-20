@@ -39,7 +39,7 @@ const Navbar = () => {
       },
       {
         label: '总结',
-        icon: 'wx',
+        icon: 'summary',
         link: `/summary?type=summary`,
         activeLink: ['/summary']
       }
