@@ -568,7 +568,7 @@ const Summary = ({ type, isPcDevice }: { type: string; isPcDevice: boolean }) =>
                         src={
                           item.obj === 'Human'
                             ? userInfo?.avatar
-                            : chatData.model.avatar || LOGO_ICON
+                            : chatData.model.avatar || userInfo?.avatar
                         }
                         alt="avatar"
                         w={['20px', '34px']}

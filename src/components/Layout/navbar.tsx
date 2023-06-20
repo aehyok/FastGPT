@@ -31,12 +31,12 @@ const Navbar = () => {
         link: `/model?modelId=${lastModelId}`,
         activeLink: ['/model']
       },
-      {
-        label: '翻译',
-        icon: 'translate',
-        link: `/translation?type=translate`,
-        activeLink: ['/translation']
-      },
+      // {
+      //   label: '翻译',
+      //   icon: 'translate',
+      //   link: `/translation?type=translate`,
+      //   activeLink: ['/translation']
+      // },
       {
         label: '总结',
         icon: 'summary',

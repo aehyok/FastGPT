@@ -12,7 +12,8 @@ export function useTranslationSummaryConfig() {
       const translateList = chatData ? JSON.parse(chatData).translateList : [];
       localStorage.setItem(
         'lationSummaryMessage',
-        '用简单的话语总结提炼这段话的问题，先判断有几个问题，再直接列出问题列表即可，无需回复问题：'
+        // '用简单的话语总结提炼这段话的问题，先判断有几个问题，再直接列出问题列表即可，无需回复问题：'
+        '用最简短的话语总结提炼这段话：'
       );
       return {
         // chatId: "",

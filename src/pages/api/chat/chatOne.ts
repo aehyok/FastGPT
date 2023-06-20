@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       modelConstantsData.chatModel
     ].chatCompletion({
       apiKey: process.env.OPENAIKEY as string,
-      temperature: +temperature,
+      temperature: temperature,
       messages: [prompt],
       stream: true,
       res
