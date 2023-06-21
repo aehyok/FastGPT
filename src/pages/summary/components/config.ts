@@ -24,7 +24,7 @@ export function useTranslationSummaryConfig() {
       localStorage.setItem('lationSummaryMessage', '请将下面内容翻译为');
       return {
         model: {
-          name: '总结AI'
+          name: '总结提炼客服问题'
         },
         history: translateList
       };
