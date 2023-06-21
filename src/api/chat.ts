@@ -24,9 +24,9 @@ export const delChatHistoryById = (id: string) => GET(`/chat/removeHistory?id=${
  * 存储一轮对话
  */
 export const postSaveChat = (data: {
-  modelId: string;
-  newChatId: '' | string;
-  chatId: '' | string;
+  modelId?: string;
+  newChatId?: '' | string;
+  chatId?: '' | string;
   prompts: [ChatItemType, ChatItemType];
 }) => POST<string>('/chat/saveChat', data);
 
