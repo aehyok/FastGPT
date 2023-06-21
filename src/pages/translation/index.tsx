@@ -201,7 +201,7 @@ const Translation = ({ type, isPcDevice }: { type: string; isPcDevice: boolean }
         onMessage: (text: string) => {
           console.log(text, 'taxt');
 
-          setChatData((state) => ({
+          setChatData((state: any) => ({
             ...state,
             history: state.history.map((item: Record<string, any>, index: number) => {
               if (index !== state.history.length - 1) return item;
