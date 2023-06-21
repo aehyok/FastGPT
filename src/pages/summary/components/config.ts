@@ -36,3 +36,7 @@ export function useTranslationSummaryConfig() {
     getTranslationSummaryList
   };
 }
+
+export default function Config() {
+  return '';
+}
