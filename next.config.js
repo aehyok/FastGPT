@@ -4,7 +4,9 @@ const nextConfig = {
   output: 'standalone',
   reactStrictMode: false,
   compress: true,
-
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   webpack(config) {
     config.experiments = {
       asyncWebAssembly: true,

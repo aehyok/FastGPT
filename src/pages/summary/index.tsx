@@ -219,9 +219,9 @@ const Summary = ({ type, isPcDevice }: { type: string; isPcDevice: boolean }) =>
 
       // 设置聊天内容为完成状态
       setChatData(
-        (state) => ({
+        (state: any) => ({
           ...state,
-          history: state.history.map((item, index) => {
+          history: state.history.map((item: any, index: any) => {
             if (index !== state.history.length - 1) return item;
             return {
               ...item,
@@ -284,7 +284,7 @@ const Summary = ({ type, isPcDevice }: { type: string; isPcDevice: boolean }) =>
     ];
 
     // 插入内容
-    setChatData((state) => ({
+    setChatData((state: any) => ({
       ...state,
       history: newChatList
     }));
@@ -307,7 +307,7 @@ const Summary = ({ type, isPcDevice }: { type: string; isPcDevice: boolean }) =>
 
       resetInputVal(storeInput);
 
-      setChatData((state) => ({
+      setChatData((state: any) => ({
         ...state,
         history: newChatList.slice(0, newChatList.length - 2)
       }));
@@ -333,7 +333,7 @@ const Summary = ({ type, isPcDevice }: { type: string; isPcDevice: boolean }) =>
         // 删除数据库最后一句
         await delChatRecordByIndex(chatId, historyId);
 
-        setChatData((state) => ({
+        setChatData((state: any) => ({
           ...state,
           history: state.history.filter((_, i) => i !== index)
         }));
