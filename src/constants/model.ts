@@ -5,7 +5,7 @@ export const embeddingModel = 'text-embedding-ada-002';
 export type EmbeddingModelType = 'text-embedding-ada-002';
 
 export enum OpenAiChatEnum {
-  'GPT35' = 'gpt-3.5-turbo',
+  'GPT35' = 'gpt-3.5-turbo-0613',
   'GPT4' = 'gpt-4',
   'GPT432k' = 'gpt-4-32k'
 }
