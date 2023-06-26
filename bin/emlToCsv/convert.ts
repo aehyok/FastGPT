@@ -79,14 +79,12 @@ const getEmlDataConverted = (headers: any, text: string, html: string): EmlData 
               text.indexOf(buyerTextEnd)
             )
             .replace(symbolRegex, '')
-        : // .replace(/\s*/g, '')
-          text
+        : text
             .substring(
               text.indexOf(sellerTextStart) + sellerTextStart.length,
               text.indexOf(sellerTextEnd)
             )
             .replace(symbolRegex, '');
-    // .replace(/\s*/g, '');
   } else {
     const htmlOrderStart = '订单编号： ';
     data.orderId =
@@ -106,7 +104,6 @@ const getEmlDataConverted = (headers: any, text: string, html: string): EmlData 
 
 async function convertEmlToCsv(emlFolderPath: string, csvFilePath: string) {
   const csvData = [];
-  // csvData.push(['question', 'answer']);
   const emlFiles = fs.readdirSync(emlFolderPath);
   for (const emlFile of emlFiles) {
     const emlFilePath = `${emlFolderPath}/${emlFile}`;
@@ -125,15 +122,14 @@ async function convertEmlToCsv(emlFolderPath: string, csvFilePath: string) {
       if (item.formRole === 'seller' && question === '') return;
       if (item.formRole === 'buyer' && question === '') return (question = item.text);
       if (item.formRole === 'buyer' && question !== '' && answer === '')
-        return (question = question + item.text);
+        return (question = question + '\n' + item.text);
       if (item.formRole === 'buyer' && question !== '' && answer !== '') {
-        // csvData.push([question, answer]);
         csvData.push({ Field: question, Value: answer });
         question = item.text;
         return (answer = '');
       }
       if (item.formRole === 'seller' && answer === '') return (answer = item.text);
-      if (item.formRole === 'seller' && answer !== '') return (answer = answer + item.text);
+      if (item.formRole === 'seller' && answer !== '') return (answer = answer + '\n' + item.text);
     });
   }
 
