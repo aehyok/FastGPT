@@ -116,12 +116,7 @@ const ModelEditForm = ({
             <Box flex={'0 0 80px'} w={0}>
               分类:
             </Box>
-            <Input
-              isDisabled={!isOwner}
-              {...register('remark', {
-                required: '分类不能为空'
-              })}
-            ></Input>
+            <Input isDisabled={!isOwner} {...register('remark')}></Input>
           </Flex>
         </FormControl>
 
