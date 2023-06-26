@@ -10,6 +10,7 @@ export type ModelListItemType = {
 
 export interface ModelUpdateParams {
   name: string;
+  remark: string;
   avatar: string;
   chat: ModelSchema['chat'];
   share: ModelSchema['share'];

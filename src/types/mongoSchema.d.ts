@@ -34,6 +34,7 @@ export interface ModelSchema {
   _id: string;
   userId: string;
   name: string;
+  remark: string;
   avatar: string;
   status: `${ModelStatusEnum}`;
   updateTime: number;

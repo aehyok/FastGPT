@@ -17,6 +17,10 @@ const ModelSchema = new Schema({
     type: String,
     required: true
   },
+  remark: {
+    type: String,
+    default: ''
+  },
   avatar: {
     type: String,
     default: '/icon/logo.png'

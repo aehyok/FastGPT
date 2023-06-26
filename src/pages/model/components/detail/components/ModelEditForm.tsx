@@ -111,6 +111,14 @@ const ModelEditForm = ({
             ></Input>
           </Flex>
         </FormControl>
+        <FormControl mt={4}>
+          <Flex alignItems={'center'}>
+            <Box flex={'0 0 80px'} w={0}>
+              分类:
+            </Box>
+            <Input isDisabled={!isOwner} {...register('remark')}></Input>
+          </Flex>
+        </FormControl>
 
         <Flex alignItems={'center'} mt={5}>
           <Box flex={'0 0 80px'} w={0}>
