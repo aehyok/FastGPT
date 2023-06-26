@@ -125,7 +125,7 @@ async function convertEmlToCsv(emlFolderPath: string, csvFilePath: string) {
       if (item.formRole === 'seller' && question === '') return;
       if (item.formRole === 'buyer' && question === '') return (question = item.text);
       if (item.formRole === 'buyer' && question !== '' && answer === '')
-        return (question = question + item.text);
+        return (question = question + '\n' + item.text);
       if (item.formRole === 'buyer' && question !== '' && answer !== '') {
         // csvData.push([question, answer]);
         csvData.push({ Field: question, Value: answer });
@@ -133,7 +133,7 @@ async function convertEmlToCsv(emlFolderPath: string, csvFilePath: string) {
         return (answer = '');
       }
       if (item.formRole === 'seller' && answer === '') return (answer = item.text);
-      if (item.formRole === 'seller' && answer !== '') return (answer = answer + item.text);
+      if (item.formRole === 'seller' && answer !== '') return (answer = answer + '\n' + item.text);
     });
   }
 
