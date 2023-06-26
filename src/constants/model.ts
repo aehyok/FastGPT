@@ -137,6 +137,7 @@ export const defaultModel: ModelSchema = {
   _id: 'modelId',
   userId: 'userId',
   name: '模型名称',
+  remark: '',
   avatar: '/icon/logo.png',
   status: ModelStatusEnum.pending,
   updateTime: Date.now(),
