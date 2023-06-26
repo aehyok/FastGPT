@@ -9,7 +9,7 @@ import { authModel } from '@/service/utils/auth';
 /* 获取我的模型 */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
-    const { name, avatar, chat, share, security } = req.body as ModelUpdateParams;
+    const { name, remark, avatar, chat, share, security } = req.body as ModelUpdateParams;
     const { modelId } = req.query as { modelId: string };
 
     if (!name || !chat || !security || !modelId) {
@@ -34,6 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       },
       {
         name,
+        remark,
         avatar,
         chat,
         'share.isShare': share.isShare,

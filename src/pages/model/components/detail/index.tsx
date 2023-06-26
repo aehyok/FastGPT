@@ -78,6 +78,7 @@ const ModelDetail = ({ modelId, isPc }: { modelId: string; isPc: boolean }) => {
       try {
         await putModelById(data._id, {
           name: data.name,
+          remark: data.remark,
           avatar: data.avatar || '/icon/logo.png',
           chat: data.chat,
           share: data.share,
