@@ -91,13 +91,7 @@ const Navbar = () => {
         cursor={'pointer'}
         // onClick={() => router.push('/number')}
       >
-        <Image
-          src={userInfo?.avatar || '/icon/human.png'}
-          objectFit={'contain'}
-          w={'36px'}
-          h={'36px'}
-          alt=""
-        />
+        <Image src={'/icon/logo.png'} objectFit={'contain'} w={'36px'} h={'36px'} alt="" />
       </Box>
       {/* 导航列表 */}
       <Box flex={1}>

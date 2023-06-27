@@ -140,7 +140,6 @@ const Home = () => {
       position={'relative'}
       flexDirection={'column'}
       alignItems={'center'}
-      h={'100%'}
       overflow={'overlay'}
     >
       <Box id={'particles-js'} position={'absolute'} top={0} left={0} right={0} bottom={0} />
@@ -159,7 +158,7 @@ const Home = () => {
           letterSpacing={'5px'}
           color={'myBlue.600'}
         >
-          Love Repair
+          Love Can Repair
         </Box>
         <Box color={'myBlue.600'} fontSize={['30px', '50px']}></Box>
         <Box color={'myBlue.600'} fontSize={['30px', '50px']}>
@@ -177,9 +176,9 @@ const Home = () => {
         </Button>
       </Flex>
 
-      <Box w={'100%'} mt={'100vh'} px={[5, 10]} pb={[5, 10]}>
+      <Box w={'100%'} mt={'90vh'} px={[5, 10]} pb={[5, 10]}>
         <Card p={5} mt={4} textAlign={'center'}>
-          <Box>Power by Love Repair Team</Box>
+          <Box>Power by Love Can Repair Team</Box>
         </Card>
       </Box>
     </Flex>
