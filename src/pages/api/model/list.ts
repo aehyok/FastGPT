@@ -18,14 +18,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         {
           userId
         },
-        '_id avatar name chat.systemPrompt'
+        '_id avatar remark name chat.systemPrompt'
       ).sort({
         _id: -1
       }),
       Collection.find({ userId })
         .populate({
           path: 'modelId',
-          select: '_id avatar name chat.systemPrompt',
+          select: '_id avatar remark name chat.systemPrompt',
           match: { 'share.isShare': true }
         })
         .then((res) => res.filter((item) => item.modelId))
@@ -36,6 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         myModels: myModels.map((item) => ({
           _id: item._id,
           name: item.name,
+          remark: item.remark,
           avatar: item.avatar,
           systemPrompt: item.chat.systemPrompt
         })),
@@ -43,6 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           .map((item: any) => ({
             _id: item.modelId?._id,
             name: item.modelId?.name,
+            remark: item.modelId?.remark,
             avatar: item.modelId?.avatar,
             systemPrompt: item.modelId?.chat.systemPrompt
           }))

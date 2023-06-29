@@ -50,6 +50,7 @@ const ModelList = ({ models, modelId }: { models: ModelListItemType[]; modelId: 
             <Box flex={'1 0 0'} w={0} ml={3}>
               <Box className="textEllipsis" color={'myGray.1000'}>
                 {item.name}
+                {item.remark && '(' + item.remark + ')'}
               </Box>
               <Box className="textEllipsis" color={'myGray.400'} fontSize={'sm'}>
                 {item.systemPrompt || ''}
