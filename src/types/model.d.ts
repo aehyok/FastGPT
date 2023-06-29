@@ -4,6 +4,7 @@ import type { ModelSchema } from './mongoSchema';
 export type ModelListItemType = {
   _id: string;
   name: string;
+  remark: string;
   avatar: string;
   systemPrompt: string;
 };

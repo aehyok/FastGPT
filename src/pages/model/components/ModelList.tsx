@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { Box, Flex, useTheme, Input, IconButton, Tooltip, Image } from '@chakra-ui/react';
+import { Box, Flex, useTheme, Input, IconButton, Tooltip, Image, Text } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
 import MyIcon from '@/components/Icon';
@@ -143,7 +143,7 @@ const ModelList = ({ modelId }: { modelId: string }) => {
                 />
                 <Box flex={'1 0 0'} w={0} ml={3}>
                   <Box className="textEllipsis" color={'myGray.1000'}>
-                    {item.name}
+                    {item.name} {item.remark && '(' + item.remark + ')'}
                   </Box>
                   <Box className="textEllipsis" color={'myGray.400'} fontSize={'sm'}>
                     {item.systemPrompt || '这个AI助手没有设置提示词~'}
