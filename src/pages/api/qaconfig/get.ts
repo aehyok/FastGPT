@@ -16,11 +16,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log(userId, code);
     const data = await QaConfig.findOne(
       {
-        userId,
+        // userId,
         code
       },
       '_id name code prompt'
     );
+    console.log(data, '你是啥');
 
     jsonRes(res, {
       data
