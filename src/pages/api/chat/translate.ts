@@ -15,7 +15,7 @@ async function translate(prompt: string) {
   const chatApi = new OpenAIApi(configuration);
 
   const chatCompletion = await chatApi.createChatCompletion({
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-3.5-turbo-16k',
     messages: [{ role: 'user', content: `请将下面的内容翻译为中文：${prompt}` }]
   });
   return chatCompletion.data.choices[0].message?.content;
@@ -29,19 +29,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .pipe(csv())
       .on('data', (data: any) => results.push(data))
       .on('end', async () => {
-        // console.log(results);
+        console.log(results);
         for (const element of results) {
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-          const question = await translate(element.question);
-          const answer = await translate(element.answer);
-          console.log(question);
-          convertResult.push({ Field: question, Value: answer });
-          if (convertResult.length == 3) {
-            break;
+          while (true) {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            try {
+              const question = await translate(element.question);
+              const answer = await translate(element.answer);
+              console.log(question);
+              convertResult.push({ Field: question, Value: answer });
+              break;
+            } catch (e) {
+              console.error('An error occurred');
+            }
           }
         }
 
-        const csvFilePath = './ttt.csv';
+        const csvFilePath = './ttttt.csv';
         const csvWriterObject = csvWriter.createObjectCsvWriter({
           path: csvFilePath,
           header: [
@@ -54,11 +58,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await csvWriterObject.writeRecords(convertResult);
         // 在写入完成后，手动添加 BOM
         fs.writeFileSync(csvFilePath, `\ufeff${fs.readFileSync(csvFilePath, 'utf8')}`, 'utf8');
-      });
 
-    jsonRes(res, {
-      ...results
-    });
+        jsonRes(res, {
+          ...results
+        });
+      });
   } catch (err) {
     jsonRes(res, {
       code: 500,
