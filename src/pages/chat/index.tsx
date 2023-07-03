@@ -608,14 +608,14 @@ const Chat = ({
           </MenuItem>
         )}
         <MenuItem onClick={() => onclickCopy(history.value)}>复制</MenuItem>
-        {hasVoiceApi && (
+        {/* {hasVoiceApi && (
           <MenuItem
             borderBottom={theme.borders.base}
             onClick={() => voiceBroadcast({ text: history.value })}
           >
             语音播报
           </MenuItem>
-        )}
+        )} */}
 
         <MenuItem onClick={() => delChatRecord(index, history._id)}>删除</MenuItem>
       </MenuList>
@@ -624,7 +624,7 @@ const Chat = ({
       chatData.model.canUse,
       chatData.modelId,
       delChatRecord,
-      hasVoiceApi,
+      // hasVoiceApi,
       onclickCopy,
       router,
       theme.borders.base

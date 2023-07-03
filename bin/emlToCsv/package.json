@@ -1,0 +1,23 @@
+{
+  "name": "emlToCsv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "convert.ts",
+  "scripts": {
+    "start": "ts-node --esm convert.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@types/mailparser": "^3.4.0",
+    "csv-writer": "^1.6.0",
+    "mailparser": "^3.6.4",
+    "nodemailer": "^6.9.3",
+    "ts-node": "^10.9.1",
+    "ts-node-esm": "^0.0.6",
+    "typescript": "^5.1.3"
+  }
+}
