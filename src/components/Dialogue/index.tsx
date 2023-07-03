@@ -8,12 +8,8 @@ import React, {
   ComponentType
 } from 'react';
 import { useRouter } from 'next/router';
-// import {
-//   getInitChatSiteInfo,
-//   delChatRecordByIndex,
-//   postSaveChat,
-//   delChatHistoryById
-// } from '@/api/chat';
+import { HistoryItemType, ChatType } from '@/types/chatOne';
+
 import type { ChatSiteItemType, ExportChatType } from '@/types/chat';
 import {
   Textarea,
@@ -200,7 +196,7 @@ const Dialogue = ({
       };
 
       // 流请求，获取数据
-      let { responseText, systemPrompt, newChatId } = await streamFetch({
+      let { systemPrompt } = await streamFetch({
         url: '/api/chat/chatOne',
         data: {
           prompt
@@ -230,9 +226,9 @@ const Dialogue = ({
 
       // 设置聊天内容为完成状态
       setChatData(
-        (state) => ({
+        (state: ChatType) => ({
           ...state,
-          history: state.history.map((item, index) => {
+          history: state.history.map((item: any, index: number) => {
             if (index !== state.history.length - 1) return item;
             return {
               ...item,
@@ -302,7 +298,7 @@ const Dialogue = ({
     ];
 
     // 插入内容
-    setChatData((state) => ({
+    setChatData((state: ChatType) => ({
       ...state,
       history: newChatList
     }));
@@ -325,13 +321,14 @@ const Dialogue = ({
 
       resetInputVal(storeInput);
 
-      setChatData((state) => ({
+      setChatData((state: ChatType) => ({
         ...state,
         history: newChatList.slice(0, newChatList.length - 2)
       }));
     }
   }, [
     languag,
+    type,
     isChatting,
     inputVal,
     chatData.history,
@@ -353,7 +350,7 @@ const Dialogue = ({
         // 删除数据库最后一句( 后期有数据库的话 )
         // await delChatRecordByIndex(chatId, historyId);
 
-        setChatData((state: any) => ({
+        setChatData((state: ChatType) => ({
           ...state,
           history: state.history.filter((_: any, i: number) => i !== index)
         }));
@@ -766,12 +763,5 @@ const Dialogue = ({
     </Flex>
   );
 };
-
-// Translation.getInitialProps = ({ query, req }: any) => {
-//   return {
-//     type: query?.type || '',
-//     isPcDevice: !/Mobile/.test(req ? req.headers['user-agent'] : navigator.userAgent)
-//   };
-// };
 
 export default Dialogue;

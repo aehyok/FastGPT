@@ -12,8 +12,8 @@ type State = {
   forbidLoadChatData: boolean;
   setForbidLoadChatData: (val: boolean) => void;
   chatData: ChatType;
-  // setChatData: (e?: ChatType | ((e: ChatType) => ChatType)) => void;
-  setChatData: any;
+  setChatData: (e?: ChatType | ((e: ChatType) => ChatType), status?: string) => void;
+  // setChatData: any;
   // lastChatModelId: string;
   // setLastChatModelId: (id: string) => void;
   // lastChatId: string;
@@ -35,18 +35,6 @@ export const useChatStore = create<State>()(
   devtools(
     persist(
       immer((set, get) => ({
-        // lastChatModelId: '',
-        // setLastChatModelId(id: string) {
-        //   set((state) => {
-        //     state.lastChatModelId = id;
-        //   });
-        // },
-        // lastChatId: '',
-        // setLastChatId(id: string) {
-        //   set((state) => {
-        //     state.lastChatId = id;
-        //   });
-        // },
         history: [],
         async loadHistory({ pageNum, init = false }: { pageNum: number; init?: boolean }) {
           if (get().history.length > 0 && !init) return null;
@@ -66,8 +54,10 @@ export const useChatStore = create<State>()(
           });
         },
         chatData: defaultChatData,
-        // setChatData(e: ChatType | ((e: ChatType) => ChatType) = defaultChatData) {
-        setChatData(e: any, status: string) {
+        setChatData(
+          e: ChatType | ((e: ChatType) => ChatType) = defaultChatData,
+          status: string | undefined
+        ) {
           if (typeof e === 'function') {
             set((state) => {
               state.chatData = e(state.chatData);

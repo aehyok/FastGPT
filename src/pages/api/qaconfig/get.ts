@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
       '_id name code prompt'
     );
-    console.log(data, '你是啥');
+    // console.log(data, '你是啥');
 
     jsonRes(res, {
       data
