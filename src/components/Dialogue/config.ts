@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useToast } from '@/hooks/useToast';
 import { getQaconfig } from '@/api/translation';
-const LanguageDetect = require('languagedetect');
-const lngDetector = new LanguageDetect();
-// const franc = require('franc');
-import { franc } from 'franc';
 type getQaconfigDataType = {
   prompt: string;
   code: string;
@@ -62,9 +58,9 @@ export function useTranslationSummaryConfig() {
 
   const judgmentLanguageFun = (value: string) => {
     // console.log(lngDetector.getLanguages(value, 2), "aaa",value);
-    console.log(franc, 'adasdas');
+    // console.log(franc, 'adasdas');
 
-    console.log(franc(value, { minLength: 1, only: ['cmn', 'eng', 'spa', 'fra', 'ita'] }), 'aaaa');
+    // console.log(franc(value, { minLength: 1, only: ['cmn', 'eng', 'spa', 'fra', 'ita'] }), 'aaaa');
 
     var chineseRegex = /^[\u4e00-\u9fa5]+$/;
     var chineseRegex1 = /^[a-zA-Z]+$/;
