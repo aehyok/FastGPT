@@ -19,6 +19,7 @@ node_modules
 .DS_Store
 *.pem
 output.csv
+ttt.csv
 
 # debug
 npm-debug.log*

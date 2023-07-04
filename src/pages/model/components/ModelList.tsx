@@ -146,7 +146,7 @@ const ModelList = ({ modelId }: { modelId: string }) => {
                     {item.name} {item.remark && '(' + item.remark + ')'}
                   </Box>
                   <Box className="textEllipsis" color={'myGray.400'} fontSize={'sm'}>
-                    {item.systemPrompt || '这个AI助手没有设置提示词~'}
+                    {item.remark || '这个AI助手没有设置分类~'}
                   </Box>
                 </Box>
               </Flex>
