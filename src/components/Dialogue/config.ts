@@ -62,9 +62,9 @@ export function useTranslationSummaryConfig() {
 
   const judgmentLanguageFun = (value: string) => {
     // console.log(lngDetector.getLanguages(value, 2), "aaa",value);
-    console.log(franc, 'adasdas');
+    // console.log(franc, 'adasdas');
 
-    console.log(franc(value, { minLength: 1, only: ['cmn', 'eng', 'spa', 'fra', 'ita'] }), 'aaaa');
+    // console.log(franc(value, { minLength: 1, only: ['cmn', 'eng', 'spa', 'fra', 'ita'] }), 'aaaa');
 
     var chineseRegex = /^[\u4e00-\u9fa5]+$/;
     var chineseRegex1 = /^[a-zA-Z]+$/;
