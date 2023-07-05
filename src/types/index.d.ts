@@ -50,8 +50,8 @@ export type OperatingButtonType = {
   name: string;
   onClickType: string;
   fields?: AddEditformType[];
-  dialogTitle?: string | ((...args: any[]) => string);
-  dialogDescription?: string | ((...args: any[]) => string);
+  dialogTitle: (val: { [key: string]: string }) => ReactNode | string;
+  dialogDescription: (val: { [key: string]: string }) => ReactNode | string;
   render?: (...args: any[]) => string;
 };
 

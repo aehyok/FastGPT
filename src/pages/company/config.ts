@@ -16,37 +16,44 @@ export function useCompanyConfig() {
     {
       type: 'text',
       name: 'name',
-      label: 'name'
+      label: 'name',
+      required: true
     },
     {
       type: 'text',
       name: 'shortName',
-      label: 'shortName'
+      label: 'shortName',
+      required: true
     },
     {
       type: 'text',
       name: 'logo',
-      label: 'logo'
+      label: 'logo',
+      required: true
     },
     {
       type: 'text',
       name: 'intro',
-      label: 'intro'
+      label: 'intro',
+      required: true
     },
     {
       type: 'text',
       name: 'address',
-      label: 'address'
+      label: 'address',
+      required: true
     },
     {
       type: 'text',
       name: 'email',
-      label: 'email'
+      label: 'email',
+      required: true
     },
     {
       type: 'text',
       name: 'phone',
-      label: 'phone'
+      label: 'phone',
+      required: true
     }
   ];
   const operatingButton = [

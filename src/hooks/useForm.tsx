@@ -14,15 +14,27 @@ import {
   Box
 } from '@chakra-ui/react';
 
-const Form = ({ fields, onSubmit, formData, type, onClose }) => {
+const Form = ({
+  fields,
+  onSubmit,
+  formData,
+  type,
+  onClose
+}: {
+  fields: any;
+  onSubmit: (formValues: { [key: string]: string }, type: string) => void;
+  formData: { [key: string]: string };
+  type: string;
+  onClose: () => void;
+}) => {
   const [formValues, setFormValues] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
     await onSubmit(formValues, type);
@@ -39,7 +51,7 @@ const Form = ({ fields, onSubmit, formData, type, onClose }) => {
   return (
     <Box as="form" onSubmit={handleSubmit}>
       <VStack spacing={4} align="stretch">
-        {fields.map((field) => (
+        {fields.map((field: Record<string, any>) => (
           <FormControl
             key={field.name}
             id={field.name}
@@ -50,16 +62,18 @@ const Form = ({ fields, onSubmit, formData, type, onClose }) => {
             {field.type === 'textarea' ? (
               <Textarea
                 name={field.name}
+                // @ts-ignore
                 value={formValues[field.name] || ''}
                 onChange={handleChange}
               />
             ) : field.type === 'select' ? (
               <Select
                 name={field.name}
+                // @ts-ignore
                 value={formValues[field.name] || ''}
                 onChange={handleChange}
               >
-                {field.options.map((option) => (
+                {field.options.map((option: Record<string, any>) => (
                   <option key={option.value} value={option.value}>
                     {option.label}
                   </option>
@@ -68,6 +82,7 @@ const Form = ({ fields, onSubmit, formData, type, onClose }) => {
             ) : field.type === 'checkbox' ? (
               <Checkbox
                 name={field.name}
+                // @ts-ignore
                 isChecked={formValues[field.name] || false}
                 onChange={handleChange}
               >
@@ -77,6 +92,7 @@ const Form = ({ fields, onSubmit, formData, type, onClose }) => {
               <Input
                 type={field.type}
                 name={field.name}
+                // @ts-ignore
                 value={formValues[field.name] || ''}
                 onChange={handleChange}
               />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import {
   Table,
   Thead,
@@ -34,8 +34,14 @@ const SearchableTable = ({
   operatingButton: Array<OperatingButtonType>;
   onConfirm: Function;
 }) => {
+  type formDataType = {
+    formList: any;
+    title: (val: { [key: string]: string }) => ReactNode | string;
+    description: (val: { [key: string]: string }) => ReactNode | string;
+    onClickType: string;
+  };
   const [searchTerm, setSearchTerm] = useState('');
-  const [formConfig, setFormConfig] = useState({});
+  const [formConfig, setFormConfig] = useState({} as formDataType);
   const [formValues, setFormValues] = useState({});
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -59,7 +65,9 @@ const SearchableTable = ({
   } = usePagination({
     api: getCompanyList,
     limit: 10,
-    params: {}
+    params: {
+      keyword: searchTerm
+    }
   });
 
   const cancelRef = React.useRef();
@@ -75,6 +83,11 @@ const SearchableTable = ({
   //   console.log('asdad');
   // };
 
+  // const searchFun = (value: string) => {
+  //   mutate(1)
+
+  // }
+
   const btnClick = ({
     onClickType,
     fields,
@@ -82,12 +95,12 @@ const SearchableTable = ({
     dialogDescription
   }: {
     onClickType: string;
-    fields: any;
-    dialogTitle: string;
-    dialogDescription: string;
+    fields?: any;
+    dialogTitle: (val: { [key: string]: string }) => ReactNode | string;
+    dialogDescription: (val: { [key: string]: string }) => ReactNode | string;
   }) => {
     identificationFun(onClickType);
-    const formData = {
+    const formData: formDataType = {
       formList: fields,
       title: dialogTitle,
       description: dialogDescription,
@@ -98,7 +111,7 @@ const SearchableTable = ({
     setFormConfig(formData);
   };
 
-  const onConfirmFun = async (val, type) => {
+  const onConfirmFun = async (val: { [key: string]: string }, type: string) => {
     const isSucces = await onConfirm(val, type);
     if (isSucces) await mutate(1);
   };
@@ -139,6 +152,7 @@ const SearchableTable = ({
         </Box>
         <Box>
           <InputGroup mb={4}>
+            {/* eslint-disable-next-line react/no-children-prop */}
             <InputLeftElement pointerEvents="none" children={<SearchIcon />} />
             <Input
               type="text"
@@ -147,7 +161,18 @@ const SearchableTable = ({
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button ml={2} onClick={() => setSearchTerm('')} disabled={!searchTerm}>
+            {/* onChange={(e) => setSearchTerm(e.target.value)} */}
+            <Button ml={2} onClick={() => mutate(1)} disabled={!searchTerm}>
+              Search
+            </Button>
+            <Button
+              ml={2}
+              onClick={() => {
+                setSearchTerm('');
+                mutate(1);
+              }}
+              disabled={!searchTerm}
+            >
               Clear
             </Button>
           </InputGroup>
@@ -204,3 +229,6 @@ const SearchableTable = ({
 };
 
 export default SearchableTable;
+function mutate() {
+  throw new Error('Function not implemented.');
+}

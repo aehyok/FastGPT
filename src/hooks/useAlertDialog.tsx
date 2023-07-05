@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, RefObject, useState } from 'react';
 import {
   AlertDialog,
   AlertDialogBody,
@@ -20,26 +20,20 @@ const AlertDialogForm = ({
   confirmButtonText = '确定',
   cancelButtonText = '取消',
   onConfirm
+}: {
+  onClickType: string;
+  formValues: any;
+  fields: any;
+  isOpen: boolean;
+  onClose: () => void;
+  description: (val: { [key: string]: string }) => ReactNode | string;
+  confirmButtonText?: string;
+  cancelButtonText?: string;
+  title: (val: { [key: string]: string }) => ReactNode | string;
+  onConfirm: (val: { [key: string]: string }, type: string) => Promise<void>;
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const cancelRef = React.useRef();
-
-  // const handleConfirm = async () => {
-  //   setIsLoading(true);
-  //   await onConfirm();
-  //   setIsLoading(false);
-  //   // onClose();
-  // };
-  const onSubmit = (val) => {
-    return '123';
-  };
-  // const fields = [
-  //   {
-  //     type: 'text',
-  //     name: 'name',
-  //     label: 'name：'
-  //   }
-  // ];
+  const cancelRef = React.useRef() as RefObject<any>;
 
   return (
     <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
