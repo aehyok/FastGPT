@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useToast } from '@/hooks/useToast';
 import { getQaconfig } from '@/api/translation';
-const LanguageDetect = require('languagedetect');
-const lngDetector = new LanguageDetect();
+// const LanguageDetect = require('languagedetect');
+// const lngDetector = new LanguageDetect();
 // const franc = require('franc');
-import { franc } from 'franc';
+// import { franc } from 'franc';
 type getQaconfigDataType = {
   prompt: string;
   code: string;
