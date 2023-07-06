@@ -34,14 +34,20 @@ const Navbar = () => {
       {
         label: '翻译',
         icon: 'translate',
-        link: `/translation?type=translate`,
+        link: `/translation`,
         activeLink: ['/translation']
       },
       {
         label: '总结',
         icon: 'summary',
-        link: `/summary?type=summary`,
+        link: `/summary`,
         activeLink: ['/summary']
+      },
+      {
+        label: '退换货',
+        icon: 'judge',
+        link: `/judge`,
+        activeLink: ['/judge']
       }
       // {
       //   label: '共享',
