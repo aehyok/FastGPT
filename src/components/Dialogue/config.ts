@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useToast } from '@/hooks/useToast';
 import { getQaconfig } from '@/api/translation';
-type getQaconfigDataType = {
-  prompt: string;
-  code: string;
-  name: string;
-  _id: string;
+
+// const LanguageDetect = require('languagedetect');
+// const lngDetector = new LanguageDetect();
+// const franc = require('franc');
+// import { franc } from 'franc';
+type moduleNameObjType = {
+  summary: string;
+  translate: string;
+  judge: string;
 };
 
 const languageList = new Map([
@@ -21,34 +25,23 @@ export function useTranslationSummaryConfig() {
   const [tableData, setTableData] = useState([]);
   const { toast } = useToast();
   const getTranslationSummaryList = async (type: string) => {
-    // console.log(localStorage.getItem("translate"), "aaa");
-
+    const moduleNameObj: moduleNameObjType = {
+      summary: '总结提炼客服问题',
+      translate: '翻译AI',
+      judge: '识别是否退换货'
+    };
     const { code, prompt } = (await getQaconfig(type)) as { code: number; prompt: string };
-    console.log(code, 'code', '什么玩意', prompt);
-    if (code && prompt) {
-      localStorage.setItem('lationSummaryMessage', prompt);
-    }
+    if (code && prompt) localStorage.setItem('lationSummaryMessage', prompt);
 
-    if (type === 'translate') {
-      const chatData = localStorage.getItem('translate') || ('' as string);
+    if (type) {
+      const chatData = localStorage.getItem(type) || ('' as string);
       const translateList = chatData ? JSON.parse(chatData).translateList : [];
       return {
         // chatId: "",
         // modelId: "",
         model: {
-          name: '翻译AI',
-          avatar: '/icon/logo.png'
-        },
-        history: translateList
-      };
-    } else {
-      const chatData = localStorage.getItem('summary') || ('' as string);
-
-      const translateList = chatData ? JSON.parse(chatData).translateList : [];
-      // localStorage.setItem('lationSummaryMessage', '请将下面内容翻译为');
-      return {
-        model: {
-          name: '总结提炼客服问题',
+          // @ts-ignore
+          name: moduleNameObj[type],
           avatar: '/icon/logo.png'
         },
         history: translateList

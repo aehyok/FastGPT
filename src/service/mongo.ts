@@ -14,6 +14,7 @@ export async function connectToDatabase(): Promise<void> {
   global.mongodb = 'connecting';
   try {
     mongoose.set('strictQuery', true);
+    mongoose.set('debug', true);
     global.mongodb = await mongoose.connect(process.env.MONGODB_URI as string, {
       bufferCommands: true,
       dbName: process.env.MONGODB_NAME,

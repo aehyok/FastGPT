@@ -27,7 +27,8 @@ const map = {
   wx: require('./icons/wx.svg').default,
   out: require('./icons/out.svg').default,
   translate: require('./icons/translate.svg').default,
-  summary: require('./icons/summary.svg').default
+  summary: require('./icons/summary.svg').default,
+  judge: require('./icons/judge.svg').default
 };
 
 export type IconName = keyof typeof map;
