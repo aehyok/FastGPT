@@ -143,7 +143,7 @@ const ModelList = ({ modelId }: { modelId: string }) => {
                 />
                 <Box flex={'1 0 0'} w={0} ml={3}>
                   <Box className="textEllipsis" color={'myGray.1000'}>
-                    {item.name} {item.remark && '(' + item.remark + ')'}
+                    {item.name}
                   </Box>
                   <Box className="textEllipsis" color={'myGray.400'} fontSize={'sm'}>
                     {item.remark || '这个AI助手没有设置分类~'}
