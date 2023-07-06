@@ -25,7 +25,7 @@ export const usePagination = <T = any,>({
   console.log(maxPage, 'maxPage', total);
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: async (num: number = page) => {
+    mutationFn: async (num: number = page, keyword: string = '') => {
       try {
         const res: NewPagingData<T> = await api({
           page: num,

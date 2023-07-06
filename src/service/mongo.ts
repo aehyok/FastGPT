@@ -56,15 +56,15 @@ export async function getPagedList(
   pageSize: number,
   pageNum: number
 ) {
-  console.log(model.schema, 'model');
+  console.log(model.schema, 'model', query, 'hhaha');
   const total = await model.countDocuments(query);
   const pages = Math.ceil(total / pageSize);
-  console.log(pageNum, pageSize, total, pages);
+  // console.log(pageNum, pageSize, total, pages);
   const docs = await model
     .find(query)
     .skip((pageNum - 1) * pageSize)
     .limit(pageSize);
-  console.log('getPagedList', docs);
+  // console.log('getPagedList', docs);
   return {
     docs,
     page: pageNum,
