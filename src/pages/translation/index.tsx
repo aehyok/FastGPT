@@ -4,15 +4,18 @@ import Dialogue from '@/components/Dialogue';
 // import { COLUMNS, data } from '@/constants/company';
 import dynamic from 'next/dynamic';
 import Loading from '@/components/Loading';
+import { Heading } from '@chakra-ui/react';
 
 const RadioCard = dynamic(() => import('./components/RadioCard'), {
   loading: () => <Loading fixed={false} />,
   ssr: false
 });
 const Translation = ({ type, isPcDevice }: { type: string; isPcDevice: boolean }) => {
-  useEffect(() => {}, []);
   return (
     <Flex h={'100%'} position={'relative'} direction={'column'}>
+      <Box position={'relative'} m={5} display="flex" justifyContent={'flex-start'}>
+        <Heading>翻译</Heading>
+      </Box>
       {/* 模型列表 */}
       <Box flex={1} h={'100%'} position={'relative'}>
         <Dialogue type={type} isPcDevice={isPcDevice} RadioCard={RadioCard} />
