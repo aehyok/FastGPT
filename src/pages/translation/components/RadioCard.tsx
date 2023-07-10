@@ -6,19 +6,24 @@ const RadioCard = ({ changeLanguage }: { changeLanguage: (val: string) => Promis
   const [value, setValue] = useState('');
   const language = [
     {
-      text: '中文'
+      text: '中文',
+      value: '中文'
     },
     {
-      text: '英文'
+      text: '英文',
+      value: '英文'
     },
     {
-      text: '法文'
+      text: '法文',
+      value: '法文'
     },
     {
-      text: '意大利文'
+      text: '意大利文',
+      value: '意大利文'
     },
     {
-      text: '西班牙文'
+      text: '西班牙文',
+      value: '西班牙文'
     }
   ];
 
@@ -35,7 +40,7 @@ const RadioCard = ({ changeLanguage }: { changeLanguage: (val: string) => Promis
         <Stack display={'flex'} direction="row" justifyContent={'space-around'}>
           {language?.length > 0
             ? language.map((item, index) => (
-                <Radio value={item.text} key={item.text}>
+                <Radio value={item.value} key={item.text}>
                   {item.text}
                 </Radio>
               ))

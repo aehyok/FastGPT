@@ -192,7 +192,7 @@ const Dialogue = ({
       const message = localStorage.getItem('lationSummaryMessage');
       const prompt = {
         obj: prompts[0].obj,
-        value: `${message}${languag}：` + prompts[0].value
+        value: `${message}${languag}：` + prompts[0].value + '.'
       };
 
       // 流请求，获取数据
