@@ -77,7 +77,7 @@ const Dialogue = ({
   isPcDevice: boolean;
   RadioCard?: any;
 }) => {
-  const { getTranslationSummaryList } = useTranslationSummaryConfig();
+  const { getTranslationSummaryList, judgmentLanguageFun } = useTranslationSummaryConfig();
   const hasVoiceApi = !!window.speechSynthesis;
   const router = useRouter();
   const theme = useTheme();
@@ -113,7 +113,7 @@ const Dialogue = ({
     forbidLoadChatData,
     setForbidLoadChatData
   } = useChatStore();
-  console.log(chatData, 'chatData');
+  // console.log(chatData, 'chatData');
 
   const isChatting = useMemo(
     () => chatData.history[chatData.history.length - 1]?.status === 'loading',
@@ -190,10 +190,19 @@ const Dialogue = ({
       isLeavePage.current = false;
       console.log(languag, 'languag');
       const message = localStorage.getItem('lationSummaryMessage');
-      const prompt = {
-        obj: prompts[0].obj,
-        value: `${message}${languag}：` + prompts[0].value + '.'
-      };
+      const derivedLanguage = judgmentLanguageFun(prompts[0].value);
+      let prompt;
+      if (type === 'summary') {
+        prompt = {
+          obj: prompts[0].obj,
+          value: `请用${derivedLanguage}简短的总结提炼以下这段话：` + prompts[0].value + '.'
+        };
+      } else {
+        prompt = {
+          obj: prompts[0].obj,
+          value: `${message}${languag}` + prompts[0].value + '.'
+        };
+      }
 
       // 流请求，获取数据
       let { systemPrompt } = await streamFetch({
@@ -202,7 +211,7 @@ const Dialogue = ({
           prompt
         },
         onMessage: (text: string) => {
-          console.log(text, 'taxt');
+          // console.log(text, 'taxt');
 
           setChatData((state: any) => ({
             ...state,
@@ -240,7 +249,7 @@ const Dialogue = ({
         type
       );
 
-      console.log(chatData, 'chatData');
+      // console.log(chatData, 'chatData');
 
       // refresh history
       // loadHistory({ pageNum: 1, init: true });
@@ -248,7 +257,7 @@ const Dialogue = ({
         generatingMessage();
       }, 100);
     },
-    [chatData, generatingMessage, languag, setChatData, type]
+    [generatingMessage, languag, setChatData, type]
   );
 
   /**
@@ -258,6 +267,13 @@ const Dialogue = ({
     if (!languag && type === 'translate') {
       toast({
         title: '请选择想要翻译的语种',
+        status: 'warning'
+      });
+      return;
+    }
+    if (inputVal.length < 10 && type === 'summary') {
+      toast({
+        title: '请输入一个完整的句子',
         status: 'warning'
       });
       return;
@@ -405,7 +421,7 @@ const Dialogue = ({
       isLoading && setIsLoading(true);
       try {
         const res: any = await getTranslationSummaryList(type);
-        console.log(res, 'asdasdas');
+        // console.log(res, 'asdasdas');
 
         setChatData({
           ...res,
@@ -420,8 +436,6 @@ const Dialogue = ({
           }, 300);
         }
       } catch (e: any) {
-        console.log('不世故v原始股');
-
         setChatData();
         loadHistory({ pageNum: 1, init: true });
       }
