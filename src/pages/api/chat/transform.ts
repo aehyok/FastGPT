@@ -16,14 +16,14 @@ async function translate(
     basePath: process.env.OPENAI_BASE_URL
   });
   const typePromptPrefixs = {
-    translate: '请将下面的内容翻译为中文：',
+    translate: '请将下面的内容翻译为中文(只输出中文)：',
     summary: `请用${derivedLanguage}简短的总结提炼以下句子，如果句子过短，则原文输出即可，请使用${derivedLanguage}回答（无需输出解释性文字）：`
   };
 
   const chatApi = new OpenAIApi(configuration);
 
   const chatCompletion = await chatApi.createChatCompletion({
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-3.5-turbo-16k',
     temperature: 0,
     frequency_penalty: 0.5, // 越大，重复内容越少
     presence_penalty: -0.5, // 越大，越容易出现新内容
@@ -41,16 +41,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     };
     const results: any = [];
     const convertResult: any = [];
-    fs.createReadStream('output.csv')
+    fs.createReadStream('output2.csv')
       .pipe(csv())
       .on('data', (data: any) => results.push(data))
       .on('end', async () => {
         console.log(results);
         for (const element of results) {
           while (true) {
-            await new Promise((resolve) => setTimeout(resolve, 500));
+            await new Promise((resolve) => setTimeout(resolve, 1000));
             try {
-              const derivedLanguage = judgmentLanguageFun(element.question);
+              const derivedLanguage =
+                type === 'translate' ? '' : judgmentLanguageFun(element.question);
               const question = await translate(element.question, type, derivedLanguage);
               const answer = await translate(element.answer, type, derivedLanguage);
               console.log(question);
@@ -63,7 +64,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           }
         }
 
-        const csvFilePath = './ttttt.csv';
+        const csvFilePath = './ttttt2.csv';
         const csvWriterObject = csvWriter.createObjectCsvWriter({
           path: csvFilePath,
           header: [
