@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     };
     const results: any = [];
     const convertResult: any = [];
-    fs.createReadStream('output2.csv')
+    fs.createReadStream('output.csv')
       .pipe(csv())
       .on('data', (data: any) => results.push(data))
       .on('end', async () => {
@@ -53,8 +53,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               const derivedLanguage =
                 type === 'translate' ? '' : judgmentLanguageFun(element.question);
               const question = await translate(element.question, type, derivedLanguage);
-              const answer = await translate(element.answer, type, derivedLanguage);
-              console.log(question);
+              const answer =
+                type === 'translate'
+                  ? await translate(element.answer, type, derivedLanguage)
+                  : element.answer;
               convertResult.push({ Field: question, Value: answer });
               break;
             } catch (e) {
@@ -64,7 +66,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           }
         }
 
-        const csvFilePath = './ttttt2.csv';
+        const csvFilePath = './ttttt.csv';
         const csvWriterObject = csvWriter.createObjectCsvWriter({
           path: csvFilePath,
           header: [
