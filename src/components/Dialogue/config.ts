@@ -11,6 +11,7 @@ type moduleNameObjType = {
   summary: string;
   translate: string;
   judge: string;
+  keyword: string;
 };
 
 const languageList = new Map([
@@ -33,7 +34,8 @@ export function useTranslationSummaryConfig() {
     const moduleNameObj: moduleNameObjType = {
       summary: '总结提炼客服问题',
       translate: '翻译AI',
-      judge: '识别是否退换货'
+      judge: '识别是否退换货',
+      keyword: '关键词提取'
     };
     const { code, prompt } = (await getQaconfig(type)) as { code: number; prompt: string };
     if (code && prompt) localStorage.setItem('lationSummaryMessage', prompt);
