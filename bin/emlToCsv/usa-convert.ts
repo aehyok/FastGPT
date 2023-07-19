@@ -147,7 +147,7 @@ async function convertEmlToCsv(emlFolderPath: string, csvFilePath: string) {
   console.log('Conversion completed successfully!');
 }
 
-const emlFolderPath = '../../../maii-eco1';
+const emlFolderPath = '../../../maii-eco';
 const csvFilePath = './output.csv';
 
 convertEmlToCsv(emlFolderPath, csvFilePath).catch((error) => {

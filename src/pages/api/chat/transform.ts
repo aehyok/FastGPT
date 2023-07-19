@@ -25,8 +25,6 @@ async function translate(
   const chatCompletion = await chatApi.createChatCompletion({
     model: 'gpt-3.5-turbo-16k',
     temperature: 0,
-    frequency_penalty: 0.5, // 越大，重复内容越少
-    presence_penalty: -0.5, // 越大，越容易出现新内容
     stop: ['.!?。'],
     messages: [{ role: 'user', content: `${typePromptPrefixs[type]}${prompt}` }]
   });

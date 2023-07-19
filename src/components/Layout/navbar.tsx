@@ -48,6 +48,12 @@ const Navbar = () => {
         icon: 'judge',
         link: `/judge`,
         activeLink: ['/judge']
+      },
+      {
+        label: '关键词',
+        icon: 'keyword',
+        link: `/keyword`,
+        activeLink: ['/keyword']
       }
       // {
       //   label: '共享',
