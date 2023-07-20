@@ -2,10 +2,11 @@
   "name": "emlToCsv",
   "version": "1.0.0",
   "description": "",
-  "main": "convert.ts",
+  "main": "usa-convert.ts",
   "scripts": {
     "start": "ts-node --esm convert.ts",
     "start-md": "ts-node --esm convertMarkdown.ts",
+    "start-usa": "ts-node --esm usa-convert.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

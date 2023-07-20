@@ -4,25 +4,39 @@ import fs from 'fs';
 import csv from 'csv-parser';
 import * as csvWriter from 'csv-writer';
 import { Configuration, OpenAIApi } from 'openai';
+import { useTranslationSummaryConfig } from '@/components/Dialogue/config';
 
-async function translate(prompt: string) {
-  let startTime = Date.now();
+async function translate(
+  prompt: string,
+  type: 'translate' | 'summary' = 'translate',
+  derivedLanguage: string
+) {
   const configuration = new Configuration({
     apiKey: process.env.OPENAIKEY,
     basePath: process.env.OPENAI_BASE_URL
   });
+  const typePromptPrefixs = {
+    translate: '请将下面的内容翻译为中文(只输出中文)：',
+    summary: `请用${derivedLanguage}简短的总结提炼以下句子，如果句子过短，则原文输出即可，请使用${derivedLanguage}回答（无需输出解释性文字）：`
+  };
 
   const chatApi = new OpenAIApi(configuration);
 
   const chatCompletion = await chatApi.createChatCompletion({
     model: 'gpt-3.5-turbo-16k',
-    messages: [{ role: 'user', content: `请将下面的内容翻译为中文：${prompt}` }]
+    temperature: 0,
+    stop: ['.!?。'],
+    messages: [{ role: 'user', content: `${typePromptPrefixs[type]}${prompt}` }]
   });
   return chatCompletion.data.choices[0].message?.content;
 }
 /* 获取单独设置的QaConfig 通过配置在数据库直接进行读取 */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const { judgmentLanguageFun } = useTranslationSummaryConfig();
   try {
+    const { type } = req.query as {
+      type: 'translate' | 'summary'; // 默认为翻译
+    };
     const results: any = [];
     const convertResult: any = [];
     fs.createReadStream('output.csv')
@@ -34,12 +48,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           while (true) {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             try {
-              const question = await translate(element.question);
-              const answer = await translate(element.answer);
-              console.log(question);
+              const derivedLanguage =
+                type === 'translate' ? '' : judgmentLanguageFun(element.question);
+              const question = await translate(element.question, type, derivedLanguage);
+              const answer =
+                type === 'translate'
+                  ? await translate(element.answer, type, derivedLanguage)
+                  : element.answer;
               convertResult.push({ Field: question, Value: answer });
               break;
             } catch (e) {
+              console.log(e);
               console.error('An error occurred');
             }
           }

@@ -47,13 +47,13 @@ const getEmlDataConverted = (headers: any, text: string, html: string): EmlData 
     headerToHtml.indexOf(headerHtmlStart) + headerHtmlStart.length,
     headerToHtml.indexOf('" class')
   );
-  const sellerTextStart = '-------------- 开始使用邮件 --------------------';
-  const sellerTextEnd = '-------------- 结束消息 -----------------------';
-  const buyerTextStart = '------------- 邮件正文开始: -------------';
+  const sellerTextStart = '------------- Begin message -------------';
+  const sellerTextEnd = '------------- End message -------------';
+  const buyerTextStart = '------------- Message:  -------------';
   const buyerTextEnd = '------------- End message -------------';
 
   if (text) {
-    const sellerTextOrderStart = '订单编号：';
+    const sellerTextOrderStart = 'Order ID:';
     const buyerTextOrderStart = '# ';
     data.orderId =
       data.formRole === 'buyer'
@@ -86,7 +86,7 @@ const getEmlDataConverted = (headers: any, text: string, html: string): EmlData 
             )
             .replace(symbolRegex, '');
   } else {
-    const htmlOrderStart = '订单编号： ';
+    const htmlOrderStart = 'Order ID： ';
     data.orderId =
       data.formRole === 'buyer'
         ? html
@@ -99,6 +99,7 @@ const getEmlDataConverted = (headers: any, text: string, html: string): EmlData 
     const match1 = html.match(regex);
     data.text = match1 ? match1[1] : '';
   }
+  console.log(data);
   return data;
 };
 

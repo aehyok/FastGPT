@@ -153,7 +153,9 @@ export const searchKb = async ({
       searchPrompts: [
         {
           obj: ChatRoleEnum.System,
-          value: '对不起，你的问题不在资料库中。'
+          // value: '对不起，你的问题不在资料库中。'
+          value:
+            'Dear customer, we apologize for the inconvenience. Of course, we could offer you a replacement if you receive a faulty phone. First of all, could you please tell us more details about the problem you are having? You can also send us some photos showing the problem. Also, please send us the IMEI number of the phone you received. The IMEI can be found in Settings - General - Info. Yours sincerely'
         }
       ]
     };

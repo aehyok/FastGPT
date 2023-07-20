@@ -4,18 +4,21 @@ import Dialogue from '@/components/Dialogue';
 // import { COLUMNS, data } from '@/constants/company';
 import dynamic from 'next/dynamic';
 import Loading from '@/components/Loading';
+import { Heading } from '@chakra-ui/react';
 
 const RadioCard = dynamic(() => import('./components/RadioCard'), {
   loading: () => <Loading fixed={false} />,
   ssr: false
 });
-const Translation = ({ type, isPcDevice }: { type: string; isPcDevice: boolean }) => {
-  useEffect(() => {}, []);
+const Translation = ({ isPcDevice }: { isPcDevice: boolean }) => {
   return (
     <Flex h={'100%'} position={'relative'} direction={'column'}>
+      <Box position={'relative'} m={5} display="flex" justifyContent={'flex-start'}>
+        <Heading>翻译</Heading>
+      </Box>
       {/* 模型列表 */}
       <Box flex={1} h={'100%'} position={'relative'}>
-        <Dialogue type={type} isPcDevice={isPcDevice} RadioCard={RadioCard} />
+        <Dialogue type={'translate'} isPcDevice={isPcDevice} RadioCard={RadioCard} />
       </Box>
     </Flex>
   );
@@ -23,7 +26,6 @@ const Translation = ({ type, isPcDevice }: { type: string; isPcDevice: boolean }
 
 Translation.getInitialProps = ({ query, req }: any) => {
   return {
-    type: query?.type || '',
     isPcDevice: !/Mobile/.test(req ? req.headers['user-agent'] : navigator.userAgent)
   };
 };
