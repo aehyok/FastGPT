@@ -4,7 +4,9 @@
   "description": "",
   "main": "usa-convert.ts",
   "scripts": {
-    "start": "ts-node --esm usa-convert.ts",
+    "start": "ts-node --esm convert.ts",
+    "start-md": "ts-node --esm convertMarkdown.ts",
+    "start-usa": "ts-node --esm usa-convert.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +17,7 @@
     "@types/mailparser": "^3.4.0",
     "csv-writer": "^1.6.0",
     "mailparser": "^3.6.4",
+    "marked": "^5.1.0",
     "nodemailer": "^6.9.3",
     "ts-node": "^10.9.1",
     "ts-node-esm": "^0.0.6",
