@@ -50,6 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const modelConstantsData = ChatModelMap[model.chat.chatModel];
 
+    prompt.value = `下面我的问题是：${prompt.value}`;
     // 读取对话内容
     // const prompts = [...content, prompt];
     const prompts = [prompt];
