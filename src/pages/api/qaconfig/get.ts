@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // userId,
         code
       },
-      '_id name code prompt'
+      '_id name code prompt remark'
     );
     // console.log(data, '你是啥');
 

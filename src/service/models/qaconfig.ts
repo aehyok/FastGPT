@@ -18,6 +18,9 @@ const QaConfigSchema = new Schema({
   prompt: {
     type: String,
     required: true
+  },
+  remark: {
+    type: String
   }
 });
 
