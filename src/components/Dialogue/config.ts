@@ -11,6 +11,7 @@ type moduleNameObjType = {
   translate: string;
   judge: string;
   keyword: string;
+  parseSemantics: string;
 };
 
 const languageList = new Map([
@@ -34,10 +35,16 @@ export function useTranslationSummaryConfig() {
       summary: '总结提炼客服问题',
       translate: '翻译AI',
       judge: '识别是否退换货',
-      keyword: '关键词提取'
+      keyword: '关键词提取',
+      parseSemantics: '解析需求和目的'
     };
-    const { code, prompt } = (await getQaconfig(type)) as { code: number; prompt: string };
+    const { code, prompt, remark } = (await getQaconfig(type)) as {
+      code: number;
+      prompt: string;
+      remark: string;
+    };
     if (code && prompt) localStorage.setItem('lationSummaryMessage', prompt);
+    if (code && remark) localStorage.setItem('remark', remark);
 
     if (type) {
       const chatData = localStorage.getItem(type) || ('' as string);
@@ -68,8 +75,8 @@ export function useTranslationSummaryConfig() {
      *
      */
 
-    // @ts-ignore
     console.log(
+      // @ts-ignore
       recognitionLanguage[
         franc(value, { minLength: 10, only: ['cmn', 'eng', 'spa', 'fra', 'ita'] })
       ],
@@ -89,8 +96,8 @@ export function useTranslationSummaryConfig() {
     // else if (chineseRegex3.test(value)) console.log('意大利文');
     // else if (chineseRegex4.test(value)) console.log('西班牙文');
 
-    // @ts-ignore
     return (
+      // @ts-ignore
       recognitionLanguage[
         franc(value, { minLength: 10, only: ['cmn', 'eng', 'spa', 'fra', 'ita'] })
       ] || '英语'

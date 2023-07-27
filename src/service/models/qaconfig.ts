@@ -20,7 +20,8 @@ const QaConfigSchema = new Schema({
     required: true
   },
   remark: {
-    type: String
+    type: String,
+    required: false
   }
 });
 
