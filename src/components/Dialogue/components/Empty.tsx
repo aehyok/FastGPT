@@ -44,10 +44,10 @@ const Empty = ({
             alt={''}
           />
           <Box ml={3} fontSize={'3xl'} fontWeight={'bold'}>
-            {name} {avatar}
+            {name}
           </Box>
         </Flex>
-        <Box whiteSpace={'pre-line'}>{intro}1111</Box>
+        <Box whiteSpace={'pre-line'}>{intro}</Box>
       </Card>
       {/* version intro */}
       <Card p={4} mb={10} display={'none'}>
