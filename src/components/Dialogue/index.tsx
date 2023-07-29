@@ -190,12 +190,44 @@ const Dialogue = ({
       isLeavePage.current = false;
       console.log(languag, 'languag');
       const message = localStorage.getItem('lationSummaryMessage');
+      const remark = localStorage.getItem('remark');
       const derivedLanguage = judgmentLanguageFun(prompts[0].value);
       let prompt;
-      if (type === 'summary') {
+      // if (type === 'summary') {
+      //   prompt = {
+      //     obj: prompts[0].obj,
+      //     // value: `请用${derivedLanguage}简短的总结提炼以下这段话：` + prompts[0].value + '.'
+      //     // value: `请用${derivedLanguage}简短的总结提炼以下这段话，重点提炼意图和关联与手机相关的专业术语：` + prompts[0].value + '.'
+      //     // value: `请用${derivedLanguage}简短的总结提炼以下有关于手机的句子，如果句子过短，则原文输出即可，请使用${derivedLanguage}并多使用手机术语回答（无需输出解释性文字，重点提炼意图，例如手机发热就是电池有问题）：` + prompts[0].value + '.'
+      //     // value: `请用${derivedLanguage}简短的总结提炼以下这段话，（注意：仅保留这段话中和手机商品相关的内容/强调这段话实际意图）：` + prompts[0].value + '.'
+      //     value: `请用${derivedLanguage}简短的识别以下这段话手机哪个部件有问题：` + prompts[0].value + '.'
+      //   };
+      // }
+      if (type === 'parse-requirements-and-objectives') {
         prompt = {
           obj: prompts[0].obj,
-          value: `请用${derivedLanguage}简短的总结提炼以下这段话：` + prompts[0].value + '.'
+          // 原来
+          // value: message + prompts[0].value + '\n' + '你应该像下面的格式回复我:客户需求: 客户希望得到一台更换手机' + '\n' + '手机问题:手机进水后无法开机。'
+
+          // 还可以（目前最好）
+          // value: message + `Refurbished IPhone XR (red) was just told by Amazon to contact you for a replacement on an item l receivedrecently. The item in question was dropped in a shallow puddle & immediatelygrabbed within under 1min. However after following all measures I know of it simplwill not come on.l shut it off, dried it, placed it in a sealed bag of rice for 2 days. I'mstumped due to knowing it should have been fine.` + '.' + remark + '你的第二段信息是:'  + prompts[0].value
+
+          // value: `现在你是一名人工客服，你为一家主营手机业务的亚马逊线上商店服务，我从现在开始会给你发信息，你要告诉我这段信息客户的实际需求，实际目的是什么，并告诉我它的手机有什么问题，请将这些用最简短的语言总结出来，你的第一段信息是: 现在你是一名人工客服，你为一家主营手机业务的亚马逊线上商店服务，我从现在开始会给你发信息，你要告诉我这段信息客户的实际需求，请将他需求用最简短的语言总结出来，总结内容不需要包括手机型号，具体日期等，并且以最简洁的方式回复我，并且按照客户需求+手机问题的模版回复我，如下是我给你的示范:
+          // 问：Refurbished IPhone XR (red) was just told by Amazon to contact you for a replacement on an item l receivedrecently. The item in question was dropped in a shallow puddle & immediatelygrabbed within under 1min. However after following all measures I know of it simplwill not come on.l shut it off, dried it, placed it in a sealed bag of rice for 2 days. I'mstumped due to knowing it should have been fine.
+          // 答：客户需求: 客户希望得到一台更换手机。手机问题:手机进水后无法开机。
+
+          // 现在请解析并按照上面格式回复我：${prompts[0].value}
+
+          // value: `现在你是一名人工客服，你为一家主营手机业务的亚马逊线上商店服务，我从现在开始会给你发信息，你要告诉我这段信息客户的实际需求，实际目的是什么，并告诉我它的手机有什么问题，请将这些用最简短的语言总结出来，你的第一段信息是: 现在你是一名人工客服，你为一家主营手机业务的亚马逊线上商店服务，我从现在开始会给你发信息，你要告诉我这段信息客户的实际需求，请将他需求用最简短的语言总结出来，总结内容不需要包括手机型号，具体日期等，并且以最简洁的方式回复我，并且按照客户需求+手机问题的模版回复我，如下是我给你的示范:
+          // 问：Refurbished IPhone XR (red) was just told by Amazon to contact you for a replacement on an item l receivedrecently. The item in question was dropped in a shallow puddle & immediatelygrabbed within under 1min. However after following all measures I know of it simplwill not come on.l shut it off, dried it, placed it in a sealed bag of rice for 2 days. I'mstumped due to knowing it should have been fine.
+
+          // 现在请解析以下内容并以客户需求和手机问题答复：${prompts[0].value}
+
+          // `
+          value: `现在你是一名人工客服，你为一家主营手机业务的亚马逊线上商店服务，我从现在开始会给你发信息，你要告诉我这段信息客户的实际需求，实际目的是什么，并告诉我它的手机有什么问题，请将这些用最简短的语言总结出来，你的第一段信息是: 现在你是一名人工客服，你为一家主营手机业务的亚马逊线上商店服务，我从现在开始会给你发信息，你要告诉我这段信息客户的实际需求，请将他需求用最简短的语言总结出来，总结内容不需要包括手机型号，具体日期、情感等，并且以最简洁的方式回复我，并且按照客户需求+手机问题的模版回复我，
+       
+      
+          现在请解析以下内容并以客户需求和手机问题两个方面进行输出（无需多余内容）：${prompts[0].value} `
         };
       } else {
         prompt = {
@@ -203,7 +235,7 @@ const Dialogue = ({
           value: `${message}${languag}` + prompts[0].value + '.'
         };
       }
-
+      console.log(prompt, 'prompt');
       // 流请求，获取数据
       let { systemPrompt } = await streamFetch({
         url: '/api/chat/chatOne',

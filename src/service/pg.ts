@@ -150,6 +150,7 @@ class Pg {
     return pg.query(sql);
   }
   async query<T extends QueryResultRow = any>(sql: string) {
+    console.log(sql, 'query-----------query-----------');
     const pg = await connectPg();
     return pg.query<T>(sql);
   }

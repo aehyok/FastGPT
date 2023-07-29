@@ -14,13 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await connectToDatabase();
     console.log(userId, code);
-    const data = await QaConfig.findOne(
-      {
-        userId,
-        code
-      },
-      '_id name code prompt'
-    );
+    const data = await QaConfig.find({}, '_id name code prompt remark');
 
     jsonRes(res, {
       data

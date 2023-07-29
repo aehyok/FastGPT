@@ -54,6 +54,12 @@ const Navbar = () => {
         icon: 'keyword',
         link: `/keyword`,
         activeLink: ['/keyword']
+      },
+      {
+        label: '解析需求和目的',
+        icon: 'need',
+        link: `/parse-semantics`,
+        activeLink: ['/parse-semantics']
       }
       // {
       //   label: '共享',

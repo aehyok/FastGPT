@@ -122,6 +122,15 @@ export interface PaySchema {
   status: 'SUCCESS' | 'REFUND' | 'NOTPAY' | 'CLOSED';
 }
 
+export interface QaConfigSchema {
+  _id: string;
+  userId: string;
+  code: string;
+  name: string;
+  prompt: string;
+  remark: string;
+}
+
 export interface OpenApiSchema {
   _id: string;
   userId: string;
