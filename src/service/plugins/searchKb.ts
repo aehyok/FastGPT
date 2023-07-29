@@ -12,7 +12,7 @@ import { ChatItemSimpleType } from '@/types/chat';
 export const searchKb = async ({
   userOpenAiKey,
   prompts,
-  similarity = 0.2,
+  similarity = 0.8,
   model,
   userId
 }: {
@@ -41,30 +41,32 @@ export const searchKb = async ({
       textArr
     });
 
-    const searchRes = await Promise.all(
-      promptVectors.map((promptVector) =>
-        PgClient.select<{ id: string; q: string; a: string }>('modelData', {
-          fields: ['id', 'q', 'a'],
-          where: [
-            ['status', ModelDataStatusEnum.ready],
-            'AND',
-            ['model_id', model._id],
-            'AND',
-            `vector <=> '[${promptVector}]' < ${similarity}`
-          ],
-          order: [{ field: 'vector', mode: `<=> '[${promptVector}]'` }],
-          limit: limitMap[model.chat.searchMode]
-        }).then((res) => {
-          console.log('res.rows', res.rows);
-          return res.rows;
-        })
-      )
-    );
+    console.log(promptVectors[0].length, 'promptVectors-promptVectors', promptVectors.length);
+    const modelId = '64c3beece0064bf7d27fc6a6';
+
+    let res: any = null;
+    try {
+      res = await PgClient.query(
+        `BEGIN;
+         SET LOCAL ivfflat.probes = 10;
+         select id,q,a from modelData 
+         where status = '${
+           ModelDataStatusEnum.ready
+         }' and model_id= '${modelId}'  AND vector <#> '[${promptVectors[0]}]' < -0.8 
+         order by vector <#> '[${promptVectors[0]}]' 
+         limit ${limitMap[model.chat.searchMode]};
+         COMMIT;`
+      );
+    } catch (err) {
+      console.error(err);
+    }
+
+    const searchRes: any[] = [res?.[2]?.rows] || [];
 
     // Remove repeat record
     const idSet = new Set<string>();
     const filterSearch = searchRes.map((search) =>
-      search.filter((item) => {
+      search.filter((item: any) => {
         if (idSet.has(item.id)) {
           return false;
         }
@@ -75,7 +77,7 @@ export const searchKb = async ({
 
     return filterSearch.map((item) =>
       item
-        .map((item, index) => `第${index + 1}段:\n问题：${item.q}\n\n答案：${item.a}`)
+        .map((item: any, index: any) => `第${index + 1}段:\n问题：${item.q}\n\n答案：${item.a}`)
         .join('\n\n')
     );
   }
