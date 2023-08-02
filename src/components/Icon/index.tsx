@@ -30,7 +30,8 @@ const map = {
   summary: require('./icons/summary.svg').default,
   judge: require('./icons/judge.svg').default,
   keyword: require('./icons/keyword.svg').default,
-  need: require('./icons/need.svg').default
+  need: require('./icons/need.svg').default,
+  malfunction: require('./icons/malfunction.svg').default
 };
 
 export type IconName = keyof typeof map;

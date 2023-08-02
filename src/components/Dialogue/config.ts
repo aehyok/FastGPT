@@ -13,6 +13,7 @@ type moduleNameObjType = {
   judge: string;
   keyword: string;
   parseSemantics: string;
+  malfunction: string;
 };
 
 const languageList = new Map([
@@ -26,7 +27,7 @@ const languageList = new Map([
 export function useTranslationSummaryConfig() {
   const recognitionLanguage = {
     cmn: '中文',
-    eng: '英语',
+    eng: '英文',
     spa: '西班牙语',
     fra: '法语',
     ita: '意大利语'
@@ -37,7 +38,8 @@ export function useTranslationSummaryConfig() {
       translate: '翻译AI',
       judge: '识别是否退换货',
       keyword: '关键词提取',
-      parseSemantics: '解析需求和目的'
+      parseSemantics: '解析需求和目的',
+      malfunction: '解析是否手机故障'
     };
     const { code, prompt, remark } = (await getQaconfig(type)) as {
       code: number;

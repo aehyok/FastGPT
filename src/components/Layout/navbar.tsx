@@ -60,6 +60,12 @@ const Navbar = () => {
         icon: 'need',
         link: `/parse-semantics`,
         activeLink: ['/parse-semantics']
+      },
+      {
+        label: '解析是否手机故障',
+        icon: 'malfunction',
+        link: `/malfunction`,
+        activeLink: ['/malfunction']
       }
       // {
       //   label: '共享',
