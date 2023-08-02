@@ -42,8 +42,8 @@ export const searchKb = async ({
     });
 
     console.log(promptVectors[0].length, 'promptVectors-promptVectors', promptVectors.length);
-    const modelId = '64c3beece0064bf7d27fc6a6';
-
+    const modelId = model._id; //'64c3beece0064bf7d27fc6a6';
+    console.log(modelId, 'modelId');
     let res: any = null;
     try {
       res = await PgClient.query(
