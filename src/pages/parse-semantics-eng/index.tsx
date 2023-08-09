@@ -7,11 +7,11 @@ const Keyword = ({ isPcDevice }: { isPcDevice: boolean }) => {
   return (
     <Flex h={'100%'} position={'relative'} direction={'column'}>
       <Box position={'relative'} m={5} display="flex" justifyContent={'flex-start'}>
-        <Heading>解析需求和目的</Heading>
+        <Heading>解析需求和目的（英文）</Heading>
       </Box>
       {/* 模型列表 */}
       <Box flex={1} h={'100%'} position={'relative'}>
-        <Dialogue type={'parse-requirements-and-objectives'} isPcDevice={isPcDevice} />
+        <Dialogue type={'parse-requirements-and-objectives-eng'} isPcDevice={isPcDevice} />
       </Box>
     </Flex>
   );

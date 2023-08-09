@@ -56,10 +56,16 @@ const Navbar = () => {
         activeLink: ['/keyword']
       },
       {
-        label: '解析需求和目的',
+        label: '解析需求和目的(中文)',
         icon: 'need',
-        link: `/parse-semantics`,
-        activeLink: ['/parse-semantics']
+        link: `/parse-semantics-cmn`,
+        activeLink: ['/parse-semantics-cmn']
+      },
+      {
+        label: '解析需求和目的(英文)',
+        icon: 'need',
+        link: `/parse-semantics-eng`,
+        activeLink: ['/parse-semantics-eng']
       },
       {
         label: '解析是否手机故障',
